@@ -7,7 +7,7 @@ public class LookX : MonoBehaviour {
 	public float speed;
 	public float max;
 	public float min;
-	public float rotation;
+	private float rotation;
 
 	// Use this for initialization
 	void Start () {

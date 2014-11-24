@@ -7,9 +7,9 @@ public class PlayerControls : MonoBehaviour {
 	public float speed;
 	public float jumpSpeed;
 	public float gravity;
-	public float yVelocity;
-	public float rotation;
-	public float posX;
+	private float yVelocity;
+	private float rotation;
+	private float posX;
 	public float turnSpeed;
 	
 	private CharacterController cController;
@@ -33,16 +33,14 @@ public class PlayerControls : MonoBehaviour {
 	      if (Input.GetButtonDown("Jump"))
 		  yVelocity = jumpSpeed;
 	  }
-	  else
-	  {
-	      yVelocity -= gravity;
-	  }
+	  yVelocity -= gravity;
+	  
 	  float moveHorizontal = Input.GetAxis("Horizontal");
 	  float moveVertical = Input.GetAxis("Vertical");
-	  Vector3 movement = new Vector3(moveHorizontal,0.0f,moveVertical);
+	  Vector3 movement = new Vector3(moveHorizontal,0.0f,moveVertical) * speed;
 	  movement = transform.TransformDirection(movement);
-	  cController.Move(movement * speed *  Time.deltaTime);
-	  cController.Move(new Vector3(0.0f,yVelocity,0.0f) * Time.deltaTime);
+	  movement.y += yVelocity;
+	  cController.Move(movement * Time.deltaTime);
 	  
 	  posX = Input.GetAxis("Mouse X");
 	  Vector3 rot = transform.localEulerAngles;
