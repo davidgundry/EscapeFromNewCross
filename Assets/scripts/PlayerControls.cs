@@ -27,24 +27,26 @@ public class PlayerControls : MonoBehaviour {
 	void FixedUpdate ()
 	{
 	  
-	  if (cController.isGrounded)
-	  {
-	      yVelocity = 0;
-	      if (Input.GetButtonDown("Jump"))
-		  yVelocity = jumpSpeed;
-	  }
-	  yVelocity -= gravity;
+	//  if (cController.isGrounded)
+	 // {
+	  //    yVelocity = 0;
+	 //     if (Input.GetButtonDown("Jump"))
+	//	  yVelocity = jumpSpeed;
+	 // }
+	 // yVelocity -= gravity;
 	  
 	  float moveHorizontal = Input.GetAxis("Horizontal");
 	  float moveVertical = Input.GetAxis("Vertical");
-	  Vector3 movement = new Vector3(moveHorizontal,0.0f,moveVertical) * speed;
+	  Vector3 movement = new Vector3(0.0f,0.0f,moveVertical) * speed;
 	  movement = transform.TransformDirection(movement);
 	  movement.y += yVelocity;
 	  cController.Move(movement * Time.deltaTime);
 	  
-	  posX = Input.GetAxis("Mouse X");
+	  transform.position = new Vector3(transform.position.x,0.3f,transform.position.z);
+	  
+	  //posX = Input.GetAxis("Mouse X");
 	  Vector3 rot = transform.localEulerAngles;
-	  rotation += posX * turnSpeed;
+	  rotation += moveHorizontal * turnSpeed;
 	  rot.y = rotation;
 	  transform.localEulerAngles = rot;
 	}
