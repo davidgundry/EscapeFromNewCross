@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LookY : MonoBehaviour {
+public class LookX : MonoBehaviour {
 
-	public float posY;
+	public float posX;
 	public float speed;
 
 	// Use this for initialization
@@ -17,9 +17,9 @@ public class LookY : MonoBehaviour {
 	}
 	
 	void FixedUpdate() {
-	  posY = Input.GetAxis("Mouse Y");
+	  posX = Input.GetAxis("Mouse X");
 	  Vector3 rot = transform.localEulerAngles;
-	  rot.x += posY * speed;
+	  rot.y += posX * speed;
 	  transform.localEulerAngles = rot;
 	}
 }
