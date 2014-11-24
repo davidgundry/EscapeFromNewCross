@@ -5,6 +5,9 @@ public class LookX : MonoBehaviour {
 
 	public float posX;
 	public float speed;
+	public float max;
+	public float min;
+	public float rotation;
 
 	// Use this for initialization
 	void Start () {
@@ -19,7 +22,9 @@ public class LookX : MonoBehaviour {
 	void FixedUpdate() {
 	  posX = Input.GetAxis("Mouse X");
 	  Vector3 rot = transform.localEulerAngles;
-	  rot.y += posX * speed;
+	  rotation += posX * speed;
+	  rotation = Mathf.Clamp (rotation, min, max);
+	  rot.y = rotation;
 	  transform.localEulerAngles = rot;
 	}
 }
