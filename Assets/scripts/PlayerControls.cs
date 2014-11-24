@@ -8,7 +8,10 @@ public class PlayerControls : MonoBehaviour {
 	public float jumpSpeed;
 	public float gravity;
 	public float yVelocity;
-
+	public float rotation;
+	public float posX;
+	public float turnSpeed;
+	
 	private CharacterController cController;
 	
 	// Use this for initialization
@@ -40,6 +43,12 @@ public class PlayerControls : MonoBehaviour {
 	  movement = transform.TransformDirection(movement);
 	  cController.Move(movement * speed *  Time.deltaTime);
 	  cController.Move(new Vector3(0.0f,yVelocity,0.0f) * Time.deltaTime);
+	  
+	  posX = Input.GetAxis("Mouse X");
+	  Vector3 rot = transform.localEulerAngles;
+	  rotation += posX * turnSpeed;
+	  rot.y = rotation;
+	  transform.localEulerAngles = rot;
 	}
 	
 	

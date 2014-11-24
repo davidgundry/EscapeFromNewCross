@@ -22,7 +22,7 @@ public class LookY : MonoBehaviour {
 	void FixedUpdate() {
 	  posY = Input.GetAxis("Mouse Y");
 	  Vector3 rot = transform.localEulerAngles;
-	  rotation += posY * speed;
+	  rotation -= posY * speed;
 	  rotation = Mathf.Clamp (rotation, min, max);
 	  rot.x = rotation;
 	  transform.localEulerAngles = rot;
