@@ -11,9 +11,8 @@ public class PlayerControls : MonoBehaviour {
 	private float rotation;
 	private float posX;
 	public float turnSpeed;
-	
-	public int score;
-	public GUIText scoreText;
+
+	public GameObject gameController;
 	
 	private CharacterController cController;
 	
@@ -59,14 +58,9 @@ public class PlayerControls : MonoBehaviour {
 	  if (other.gameObject.tag == "Pickup")
 	  {
 	    other.gameObject.SetActive(false);
-	    score++;
-	    setCountText();
+	    gameController.GetComponent<GameController>().score++;
+	    gameController.GetComponent<GameController>().UpdateScore();
 	  }
-	}
-	
-	void setCountText()
-	{
-	    scoreText.text = "Score: " + score.ToString();
 	}
 	
 	
