@@ -12,6 +12,9 @@ public class PlayerControls : MonoBehaviour {
 	private float posX;
 	public float turnSpeed;
 	
+	public int score;
+	public GUIText scoreText;
+	
 	private CharacterController cController;
 	
 	// Use this for initialization
@@ -49,6 +52,21 @@ public class PlayerControls : MonoBehaviour {
 	  rotation += moveHorizontal * turnSpeed;
 	  rot.y = rotation;
 	  transform.localEulerAngles = rot;
+	}
+	
+	void OnTriggerEnter(Collider other)
+	{
+	  if (other.gameObject.tag == "Pickup")
+	  {
+	    other.gameObject.SetActive(false);
+	    score++;
+	    setCountText();
+	  }
+	}
+	
+	void setCountText()
+	{
+	    scoreText.text = "Score: " + score.ToString();
 	}
 	
 	
