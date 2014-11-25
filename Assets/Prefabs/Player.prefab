@@ -182,6 +182,7 @@ MonoBehaviour:
   jumpSpeed: 5
   gravity: .800000012
   turnSpeed: 5
+  gameController: {fileID: 0}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -214,8 +215,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   posY: 0
   speed: 5
-  max: 50
-  min: 10
+  max: 25
+  min: 25
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1
@@ -229,7 +230,7 @@ CapsuleCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Material: {fileID: 13400000, guid: 32efcf82598597f44b8075270d169fdc, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: .5

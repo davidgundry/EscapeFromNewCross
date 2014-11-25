@@ -12,18 +12,19 @@ public class PlayerControls : MonoBehaviour {
 	private float posX;
 	public float turnSpeed;
 
-	public GameObject gameController;
+	private GameObject gameController;
 	
 	private CharacterController cController;
 	
 	// Use this for initialization
 	void Start () {
 	  cController = GetComponent<CharacterController>();
+	  gameController = GameObject.FindWithTag("GameController");
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+	  
 	}
 	
 	void FixedUpdate ()
@@ -59,7 +60,11 @@ public class PlayerControls : MonoBehaviour {
 	  {
 	    other.gameObject.SetActive(false);
 	    gameController.GetComponent<GameController>().score++;
-	    gameController.GetComponent<GameController>().UpdateScore();
+	    gameController.GetComponent<GameController>().updateScore();	  }
+	  
+	  if (other.gameObject.tag == "Monster")
+	  {
+	    gameController.GetComponent<GameController>().levelFailed();
 	  }
 	}
 	
