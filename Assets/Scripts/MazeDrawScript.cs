@@ -18,9 +18,10 @@ public class MazeDrawScript : MonoBehaviour {
 	void Start () {
 		halfCellWidth = cellWidth / 2.0f;
 		halfCellHeight = cellHeight / 2.0f;
-		builder = new MazeBuilder (4, 4);
-		testMaze= builder.maze;
-		testMaze = builder.Generate ();
+		builder = new MazeBuilder ();
+		//testMaze= builder.maze;
+		//Random.seed = 10;
+		testMaze = builder.Generate (width,height);
 		//Maze testMaze = new Maze();
 		//testMaze.create (4,4);
 		//testMaze.fillValue (0);
