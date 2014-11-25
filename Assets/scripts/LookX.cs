@@ -41,14 +41,14 @@ public class LookX : MonoBehaviour {
 	  cameraDirection = transform.localPosition.normalized;
 	  Vector3 desiredCameraPos = transform.parent.TransformPoint(cameraDirection * maxDistance);
 
-	  distance = maxDistance;
+	  
 	  
 	  RaycastHit hit;
 	  if( Physics.Linecast(transform.parent.position, desiredCameraPos, out hit))
-	  {
-	      distance = Mathf.Clamp(hit.distance, minDistance, maxDistance);
-	  }
-
+	    distance = Mathf.Clamp(hit.distance, minDistance, maxDistance);
+	  else
+	    distance = maxDistance;
+	    
 	  transform.localPosition = cameraDirection * distance;
 	}
 }
