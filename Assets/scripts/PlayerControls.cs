@@ -19,12 +19,12 @@ public class PlayerControls : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 	  cController = GetComponent<CharacterController>();
-	  gameController = GameObject.Find("GameController");
+	  gameController = GameObject.FindWithTag("GameController");
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+	  
 	}
 	
 	void FixedUpdate ()
