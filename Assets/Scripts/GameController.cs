@@ -8,6 +8,8 @@ public class GameController : MonoBehaviour {
 	public GameObject gameGUI;
 	public GameObject completeGUI;
 	public GameObject failGUI;
+
+	public MazeDrawScript maze;
 	
 	public GUIText scoreText;
 	public GUIText levelText;
@@ -46,6 +48,7 @@ public class GameController : MonoBehaviour {
 	    gameGUI.SetActive(false);
 	    failGUI.SetActive(false);
 	    completeGUI.SetActive(false);
+		maze = (MazeDrawScript) GameObject.Find ("Maze").GetComponent(typeof(MazeDrawScript));
 	    Time.timeScale = 0;
 	    updateLevel();
 	}
@@ -86,7 +89,8 @@ public class GameController : MonoBehaviour {
 	
 	void startLevel()
 	{
-	    Time.timeScale = 1;
+		maze.createNewMaze(level);
+		Time.timeScale = 1;
 	    started = true;
 	    startGUI.SetActive(false);
 	    gameGUI.SetActive(true);
