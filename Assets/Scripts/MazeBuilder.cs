@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System;
+//using System;
 
 // adapted from code at https://gist.github.com/anonymous/828805
 
@@ -40,19 +40,19 @@ public class MazeBuilder
 			if (height < width) {
 				return VERTICAL;
 			} else {
-				return Random.Range(0,1) ? HORIZONTAL : VERTICAL;
+				return (Random.value > 0.5f) ? HORIZONTAL : VERTICAL;
 			}
 		}
 	}
 	private void divide(int[,] grid, int x,int y,int width,int height,int orientation) {
-		if ((width < 2 )||( height < 2)) {
-			return;
-		}
-			
 
+
+		/*if ((width < 2 )||( height < 2)) {
+			return;
+		}*/
 			
 				
-		int horizontal = (orientation == HORIZONTAL);
+		bool horizontal = (orientation == HORIZONTAL);
 				
 				// where will the wall be drawn from?
 		int wx = x + (horizontal ? 0 : Random.Range(0,width-2));
@@ -72,15 +72,16 @@ public class MazeBuilder
 				// what direction is perpendicular to the wall?
 		int dir = horizontal ? S : E;
 
-				for(int each=0;each<length;each++ ){
-					if ((wx != px) || (wy != py))  {
-						grid[wy,wx] |= dir;
-					}
+		for(int each=0;each<length;each++ )
+		{
+			if ((wx != px) || (wy != py))  {
+				grid[wy,wx] |= dir;
+			}
 			wx += dx;
 			wy += dy;
-				}
+		}
 						
-		int nx = nx;
+		int nx = x;
 		int ny = y;
 		int w = horizontal ? width : wx - x + 1;
 		int h = horizontal ?  wy-y+1 : height;
@@ -90,7 +91,7 @@ public class MazeBuilder
 		ny = horizontal ? wy+1 : y;
 		w = horizontal ? width : x + width - wx - 1;
 		h = horizontal ? y + height - wy - 1 : height;
-		divide(grid, nx, ny, w, h, choose_orientation(w, h))
+		divide (grid, nx, ny, w, h, choose_orientation (w, h));
 						
 	}
 
@@ -146,11 +147,11 @@ public class MazeBuilder
 		{
 				var cells = maze.cells;
 				;
-				CarvePassagesFrom (0, 0, ref cells);
+				//CarvePassagesFrom (0, 0, ref cells);
 				return maze;
 		}
 			
-		public void CarvePassagesFrom (int currentX, int currentY, ref int[,] grid)
+		/*public void CarvePassagesFrom (int currentX, int currentY, ref int[,] grid)
 		{
 				var directions = new List<Directions>
 				{
@@ -186,7 +187,7 @@ public class MazeBuilder
 						return true;
 				
 				return false;
-		}
+		}*/
 			
 		/*	public void Print(int[,] grid)
 			{
