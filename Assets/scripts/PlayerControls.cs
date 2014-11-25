@@ -13,6 +13,8 @@ public class PlayerControls : MonoBehaviour {
 	public float turnSpeed;
 	
 	public KeyCode run;
+	public KeyCode left;
+	public KeyCode right;
 
 	private GameObject gameController;
 	
@@ -50,6 +52,13 @@ public class PlayerControls : MonoBehaviour {
 	  //cController.Move(movement * Time.deltaTime);
 	  animator.SetFloat("speed",movement.magnitude);
 	  
+	  //transform.position = new Vector3(transform.position.x,0.31f,transform.position.z);
+	  
+	  //posX = Input.GetAxis("Mouse X");
+	  Vector3 rot = transform.localEulerAngles;
+	  rotation += moveHorizontal * turnSpeed;
+	  rot.y = rotation;
+	  
 	  if (Input.GetKey(run))
 	  {
 	    animator.SetBool("running",true);
@@ -59,13 +68,15 @@ public class PlayerControls : MonoBehaviour {
 	    animator.SetBool("running",false);
 	  }
 	  
-	  //transform.position = new Vector3(transform.position.x,0.31f,transform.position.z);
-	  
-	  //posX = Input.GetAxis("Mouse X");
-	  Vector3 rot = transform.localEulerAngles;
-	  rotation += moveHorizontal * turnSpeed;
-	  rot.y = rotation;
-	  transform.localEulerAngles = rot;
+	    //transform.localEulerAngles = rot;
+	    if (Input.GetKey(left))
+	      animator.SetBool("turnLeft",true);
+	    else
+	      animator.SetBool("turnLeft",false);
+	    if (Input.GetKey(right))
+	      animator.SetBool("turnRight",true);
+	    else
+	      animator.SetBool("turnRight",false);
 	}
 	
 	void OnTriggerEnter(Collider other)
