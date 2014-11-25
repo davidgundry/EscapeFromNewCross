@@ -35,55 +35,63 @@ public class MazeBuilder
 		}
 	public int choose_orientation(int width, int height) {
 		if (width < height) {
-			return HORIZONTAL
+			return HORIZONTAL;
 		} else {
 			if (height < width) {
-				return VERTICAL
+				return VERTICAL;
 			} else {
 				return Random.Range(0,1) ? HORIZONTAL : VERTICAL;
 			}
 		}
 	}
-	private divide(grid, x, y, width, height, orientation) {
-		return if width < 2 || height < 2
+	private void divide(int[,] grid, int x,int y,int width,int height,int orientation) {
+		if ((width < 2 )||( height < 2)) {
+			return;
+		}
 			
-			display_maze(grid)
-				sleep 0.02
+
+			
 				
-				horizontal = orientation == HORIZONTAL
+		int horizontal = (orientation == HORIZONTAL);
 				
-				# where will the wall be drawn from?
-				wx = x + (horizontal ? 0 : rand(width-2))
-				wy = y + (horizontal ? rand(height-2) : 0)
+				// where will the wall be drawn from?
+		int wx = x + (horizontal ? 0 : Random.Range(0,width-2));
+		int wy = y + (horizontal ? Random.Range(0,height-2) : 0);
 				
-				# where will the passage through the wall exist?
-				px = wx + (horizontal ? rand(width) : 0)
-				py = wy + (horizontal ? 0 : rand(height))
+				// where will the passage through the wall exist?
+		int px = wx + (horizontal ? Random.Range(0,width) : 0);
+		int py = wy + (horizontal ? 0 : Random.Range(0,height));
 				
-				# what direction will the wall be drawn?
-				dx = horizontal ? 1 : 0
-				dy = horizontal ? 0 : 1
+				// what direction will the wall be drawn?
+		int dx = horizontal ? 1 : 0;
+		int dy = horizontal ? 0 : 1;
 				
-				# how long will the wall be?
-				length = horizontal ? width : height
+				// how long will the wall be?
+		int length = horizontal ? width : height;
 				
-				# what direction is perpendicular to the wall?
-				dir = horizontal ? S : E
-				
-				length.times do
-				grid[wy][wx] |= dir if wx != px || wy != py
-					wx += dx
-						wy += dy
-						end
+				// what direction is perpendicular to the wall?
+		int dir = horizontal ? S : E;
+
+				for(int each=0;each<length;each++ ){
+					if ((wx != px) || (wy != py))  {
+						grid[wy,wx] |= dir;
+					}
+			wx += dx;
+			wy += dy;
+				}
 						
-						nx, ny = x, y
-						w, h = horizontal ? [width, wy-y+1] : [wx-x+1, height]
-						divide(grid, nx, ny, w, h, choose_orientation(w, h))
+		int nx = nx;
+		int ny = y;
+		int w = horizontal ? width : wx - x + 1;
+		int h = horizontal ?  wy-y+1 : height;
+		divide (grid, nx, ny, w, h, choose_orientation (w, h));
 						
-						nx, ny = horizontal ? [x, wy+1] : [wx+1, y]
-						w, h = horizontal ? [width, y+height-wy-1] : [x+width-wx-1, height]
-						divide(grid, nx, ny, w, h, choose_orientation(w, h))
-						end
+		nx = horizontal ? x : wx+1;
+		ny = horizontal ? wy+1 : y;
+		w = horizontal ? width : x + width - wx - 1;
+		h = horizontal ? y + height - wy - 1 : height;
+		divide(grid, nx, ny, w, h, choose_orientation(w, h))
+						
 	}
 
 
