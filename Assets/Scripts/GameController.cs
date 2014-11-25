@@ -20,6 +20,8 @@ public class GameController : MonoBehaviour {
 	public int score = 0;
 	public int level = 1;
 	public int targetScore;
+	
+	public string levelToLoad;
 
 	
 	void Awake ()
@@ -32,7 +34,7 @@ public class GameController : MonoBehaviour {
 	  DontDestroyOnLoad(failGUI);
 	  DontDestroyOnLoad(scoreText);
 	  DontDestroyOnLoad(levelText);
-	  Application.LoadLevel("player");
+	  Application.LoadLevel(levelToLoad);
 	}
 
 	// Use this for initialization

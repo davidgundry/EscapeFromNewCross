@@ -60,8 +60,7 @@ public class PlayerControls : MonoBehaviour {
 	  {
 	    other.gameObject.SetActive(false);
 	    gameController.GetComponent<GameController>().score++;
-	    gameController.GetComponent<GameController>().updateScore();
-	  }
+	    gameController.GetComponent<GameController>().updateScore();	  }
 	  
 	  if (other.gameObject.tag == "Monster")
 	  {
