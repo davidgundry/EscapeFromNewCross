@@ -19,11 +19,25 @@ public class GameController : MonoBehaviour {
 	
 	public int score = 0;
 	public int level = 1;
-	public int targetScore = 4;
+	public int targetScore;
 
+	
+	void Awake ()
+	{
+	  DontDestroyOnLoad(this);
+	  DontDestroyOnLoad(startGUI);
+	  DontDestroyOnLoad(pauseGUI);
+	  DontDestroyOnLoad(gameGUI);
+	  DontDestroyOnLoad(completeGUI);
+	  DontDestroyOnLoad(failGUI);
+	  DontDestroyOnLoad(scoreText);
+	  DontDestroyOnLoad(levelText);
+	  Application.LoadLevel("player");
+	}
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
 	    pauseGUI.SetActiveRecursively(false);
 	    startGUI.SetActiveRecursively(true);
 	    gameGUI.SetActiveRecursively(false);

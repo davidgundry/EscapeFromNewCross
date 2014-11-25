@@ -12,13 +12,14 @@ public class PlayerControls : MonoBehaviour {
 	private float posX;
 	public float turnSpeed;
 
-	public GameObject gameController;
+	private GameObject gameController;
 	
 	private CharacterController cController;
 	
 	// Use this for initialization
 	void Start () {
 	  cController = GetComponent<CharacterController>();
+	  gameController = GameObject.Find("GameController");
 	}
 	
 	// Update is called once per frame
