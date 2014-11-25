@@ -1735,8 +1735,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wallPrefab: {fileID: 100000, guid: c0a9674504882425fbfe70a862495cc2, type: 2}
-  width: 4
-  height: 4
+  width: 6
+  height: 6
   cellHeight: 1
   cellWidth: 1
 --- !u!1001 &100100000

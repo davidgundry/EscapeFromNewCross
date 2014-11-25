@@ -11,7 +11,7 @@ public class MazeDrawScript : MonoBehaviour {
 	public int cellHeight;
 	public int cellWidth;
 	private float halfCellWidth, halfCellHeight;
-	private Maze testMaze;
+	private Maze currentMaze;
 	private MazeBuilder builder;
 	//private int[,] cells = new int[,]{{9,3,1,5},{8,8,0,4},{8,0,6,4},{10,2,2,6}};
 	// Use this for initialization
@@ -19,16 +19,22 @@ public class MazeDrawScript : MonoBehaviour {
 		halfCellWidth = cellWidth / 2.0f;
 		halfCellHeight = cellHeight / 2.0f;
 		builder = new MazeBuilder ();
-		//testMaze= builder.maze;
-		//Random.seed = 10;
-		testMaze = builder.Generate (width,height);
-		//Maze testMaze = new Maze();
-		//testMaze.create (4,4);
-		//testMaze.fillValue (0);
-		//testMaze.drawPerimeter ();
-		//testMaze.fill(4,4,new int[,]{{9,8,8,10},{3,8,0,2},{1,0,6,2},{5,4,4,6}});
-		drawMaze (testMaze);
+
+
 	}
+	public void createNewMaze(int newLevel) {
+		removeCurrentMaze ();
+		currentMaze = builder.Generate (width, height);
+		drawMaze (currentMaze);
+	}
+	void removeCurrentMaze() {
+		GameObject[] allWalls;
+		allWalls=GameObject.FindGameObjectsWithTag("wall");
+		foreach (GameObject wall in allWalls) {
+			Destroy (wall);
+		}
+	}
+	
 	void drawMaze(Maze drawMaze) {
 				Vector3 wallSize = wallPrefab.renderer.bounds.size;
 				Debug.Log ("wall size =" + wallSize);
