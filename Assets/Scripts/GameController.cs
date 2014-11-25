@@ -18,6 +18,7 @@ public class GameController : MonoBehaviour {
 	public bool levelComplete = false;
 	
 	public int score = 0;
+	public int pillsInWorld;
 	public int level = 1;
 	public int targetScore;
 	
@@ -51,28 +52,31 @@ public class GameController : MonoBehaviour {
 	
 	void nextLevel()
 	{
-	    score = 0;
 	    level++;
-	    started = false;
-	    gameOver = false;
-	    levelComplete = false;
 	    loadLevel();
-	    updateLevel();
-	    startGUI.SetActive(true);
-	    failGUI.SetActive(false);
-	    completeGUI.SetActive(false);
+	    startStartGUI();
 	}
 	
 	void restartLevel()
 	{
+	    
+	    loadLevel();
+	    startStartGUI();
+	    
+	}
+	
+	void startStartGUI()
+	{
+	    updateLevel();
 	    score = 0;
 	    started = false;
 	    gameOver = false;
 	    levelComplete = false;
-	    loadLevel();
 	    startGUI.SetActive(true);
 	    failGUI.SetActive(false);
 	    completeGUI.SetActive(false);
+	    GameObject[] pills = GameObject.FindGameObjectsWithTag("Pill");
+	    pillsInWorld = pills.Length;
 	}
 	
 	void loadLevel()
@@ -115,6 +119,7 @@ public class GameController : MonoBehaviour {
 	{
 	    gameOver = true;
 	    failGUI.SetActive(true);
+	    gameGUI.SetActive(false);
 	    Time.timeScale = 0;
 	}
 	

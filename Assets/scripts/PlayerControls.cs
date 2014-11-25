@@ -56,12 +56,24 @@ public class PlayerControls : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider other)
 	{
-	  if (other.gameObject.tag == "Pickup")
+	  if (other.gameObject.tag == "Pill")
 	  {
 	    other.gameObject.SetActive(false);
 	    gameController.GetComponent<GameController>().score++;
-	    gameController.GetComponent<GameController>().updateScore();	  }
-	  
+	    gameController.GetComponent<GameController>().updateScore();
+	    gameController.GetComponent<GameController>().pillsInWorld--;
+	  }
+	  if (other.gameObject.tag == "Cherries")
+	  {
+	    other.gameObject.SetActive(false);
+	    gameController.GetComponent<GameController>().score+=10;
+	    gameController.GetComponent<GameController>().updateScore();
+	  }
+
+	}
+	
+	void OnCollisionEnter(Collision other)
+	{
 	  if (other.gameObject.tag == "Monster")
 	  {
 	    gameController.GetComponent<GameController>().levelFailed();
