@@ -6,6 +6,7 @@ public class GhostBillboard : MonoBehaviour {
 	private Camera cam;
 
 	public int targetX;
+	public float targetY = 0.5f;
 	public int targetZ;
 	
 	public float speed;
@@ -22,17 +23,9 @@ public class GhostBillboard : MonoBehaviour {
 	
 	void FixedUpdate()
 	{
-	  float moveX = 0;
-	  float moveZ = 0;
-	  if (transform.position.x < targetX)
-	    moveX = 1;
-	  else if (transform.position.x > targetX)
-	    moveX = -1;    
-	  if (transform.position.z < targetZ)
-	    moveZ = 1;
-	  else if (transform.position.z > targetZ)
-	    moveZ = -1;  
-	  Vector3 direction = new Vector3(moveX,0.0f,moveZ);
+	  Vector3 target = transform.InverseTransformPoint(targetX,targetY,targetZ);
+	  
+	  Vector3 direction = target - transform.position;
 	  direction.Normalize();
 	  
 	  float distanceToTarget = Vector3.Distance( new Vector3(transform.position.x,0.0f,transform.position.z), new Vector3(targetX,0.0f,targetZ));
