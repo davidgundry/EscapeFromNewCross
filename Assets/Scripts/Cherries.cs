@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PowerPill : MonoBehaviour {
+public class Cherries : MonoBehaviour {
 
 	private Camera cam;
 
