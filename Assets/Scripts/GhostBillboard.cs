@@ -21,6 +21,12 @@ public class GhostBillboard : MonoBehaviour {
 	  transform.LookAt(transform.position + cam.transform.rotation * new Vector3(0.0f,0.0f,1.0f),cam.transform.rotation * Vector3.up);
 	}
 	
+	void moveTo(int x, int y)
+	{
+	  targetX = x;
+	  targetY =y;
+	}
+	
 	void FixedUpdate()
 	{
 	  Vector3 target = transform.InverseTransformPoint(targetX,targetY,targetZ);

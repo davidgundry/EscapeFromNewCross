@@ -45,7 +45,7 @@ public class PlayerControls : MonoBehaviour {
 	  movement.y += yVelocity;
 	  cController.Move(movement * Time.deltaTime);
 	  
-	  transform.position = new Vector3(transform.position.x,0.3f,transform.position.z);
+	  transform.position = new Vector3(transform.position.x,0.31f,transform.position.z);
 	  
 	  //posX = Input.GetAxis("Mouse X");
 	  Vector3 rot = transform.localEulerAngles;
@@ -69,12 +69,11 @@ public class PlayerControls : MonoBehaviour {
 	    gameController.GetComponent<GameController>().score+=10;
 	    gameController.GetComponent<GameController>().updateScore();
 	  }
-
 	}
 	
-	void OnCollisionEnter(Collision other)
+	void OnCollisionEnter(Collision collision)
 	{
-	  if (other.gameObject.tag == "Monster")
+	  if (collision.gameObject.tag == "Monster")
 	  {
 	    gameController.GetComponent<GameController>().levelFailed();
 	  }
