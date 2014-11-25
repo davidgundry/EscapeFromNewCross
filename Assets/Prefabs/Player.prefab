@@ -1286,7 +1286,7 @@ GameObject:
   - 114: {fileID: 11400002}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: Player
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2550,7 +2550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1abc1b83d7a06b14c839619688b8ce52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: .5
   jumpSpeed: 5
   gravity: .800000012
   turnSpeed: 5
