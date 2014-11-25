@@ -45,7 +45,7 @@ public class PlayerControls : MonoBehaviour {
 	  movement.y += yVelocity;
 	  cController.Move(movement * Time.deltaTime);
 	  
-	  transform.position = new Vector3(transform.position.x,0.3f,transform.position.z);
+	  transform.position = new Vector3(transform.position.x,0.31f,transform.position.z);
 	  
 	  //posX = Input.GetAxis("Mouse X");
 	  Vector3 rot = transform.localEulerAngles;
@@ -56,13 +56,24 @@ public class PlayerControls : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider other)
 	{
-	  if (other.gameObject.tag == "Pickup")
+	  if (other.gameObject.tag == "Pill")
 	  {
 	    other.gameObject.SetActive(false);
 	    gameController.GetComponent<GameController>().score++;
-	    gameController.GetComponent<GameController>().updateScore();	  }
-	  
-	  if (other.gameObject.tag == "Monster")
+	    gameController.GetComponent<GameController>().updateScore();
+	    gameController.GetComponent<GameController>().pillsInWorld--;
+	  }
+	  if (other.gameObject.tag == "Cherries")
+	  {
+	    other.gameObject.SetActive(false);
+	    gameController.GetComponent<GameController>().score+=10;
+	    gameController.GetComponent<GameController>().updateScore();
+	  }
+	}
+	
+	void OnCollisionEnter(Collision collision)
+	{
+	  if (collision.gameObject.tag == "Monster")
 	  {
 	    gameController.GetComponent<GameController>().levelFailed();
 	  }
