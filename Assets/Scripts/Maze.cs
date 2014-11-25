@@ -14,29 +14,41 @@ public class Maze
 {
 
 		public int[,] cells;
-		public int rows;
-		public int columns;
+		public int width;
+		public int height;
 		// Use this for initialization
 		public Maze ()
 		{
 		}
-		public void create(int newRows,int newColumns) {
-			rows = newRows;
-			columns = newColumns;
-			cells = new int[rows,columns];
+		public void create(int newWidth,int newHeight) {
+			width = newWidth;
+			height = newHeight;
+			cells = new int[width,height];
 		}
 		public void fillValue(int newValue) {
-			for (int x = 0; x < rows; x++)
+			for (int x = 0; x < width; x++)
 			{
-				for (int y = 0; y < columns; y++)
+				for (int y = 0; y < height; y++)
 				{
 					cells[x, y] = newValue;
 				}				
 			}
 		}
+		public void drawPerimeter() {
+			for (int x = 0; x < width; x++) {
+				cells[x, 0] |= (int)Directions.N;
+				cells[x, height-1] |= (int)Directions.S;
+			}
+			for (int y = 0; y < height; y++)
+			{
+				cells[0, y] |= (int)Directions.W;
+				cells[width-1, y] |= (int)Directions.E;
 
-
-		public void fill (int width, int height,int[,] newCells)
+			}				
+	}
+	
+	
+	public void fill (int width, int height,int[,] newCells)
 		{
 				cells = newCells;
 		}
