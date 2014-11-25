@@ -6,71 +6,130 @@ public class GameController : MonoBehaviour {
 	public GameObject startGUI;
 	public GameObject pauseGUI;
 	public GameObject gameGUI;
-	public GameObject endGUI;
+	public GameObject completeGUI;
+	public GameObject failGUI;
+	
 	public GUIText scoreText;
+	public GUIText levelText;
 	
 	public bool started = false;
 	public bool gameOver = false;
 	public bool paused = false;
+	public bool levelComplete = false;
 	
 	public int score = 0;
+	public int level = 1;
+	public int targetScore = 4;
 
 
 	// Use this for initialization
 	void Start () {
-	  pauseGUI.SetActiveRecursively(false);
-	  startGUI.SetActiveRecursively(true);
-	  gameGUI.SetActiveRecursively(false);
-	  endGUI.SetActiveRecursively(false);
-	  Time.timeScale = 0;
+	    pauseGUI.SetActiveRecursively(false);
+	    startGUI.SetActiveRecursively(true);
+	    gameGUI.SetActiveRecursively(false);
+	    failGUI.SetActiveRecursively(false);
+	    completeGUI.SetActiveRecursively(false);
+	    Time.timeScale = 0;
+	    updateLevel();
+	}
+	
+	void nextLevel()
+	{
+	    score = 0;
+	    level++;
+	    started = false;
+	    gameOver = false;
+	    levelComplete = false;
+	    loadLevel();
+	    updateLevel();
+	    startGUI.SetActiveRecursively(true);
+	    failGUI.SetActiveRecursively(false);
+	    completeGUI.SetActiveRecursively(false);
+	}
+	
+	void restartLevel()
+	{
+	    score = 0;
+	    started = false;
+	    gameOver = false;
+	    levelComplete = false;
+	    loadLevel();
+	    startGUI.SetActiveRecursively(true);
+	    failGUI.SetActiveRecursively(false);
+	    completeGUI.SetActiveRecursively(false);
+	}
+	
+	void loadLevel()
+	{
+	    Application.LoadLevel(Application.loadedLevel);
+	}
+	
+	void startLevel()
+	{
+	    Time.timeScale = 1;
+	    started = true;
+	    startGUI.SetActiveRecursively(false);
+	    gameGUI.SetActiveRecursively(true);
+	}
+	
+	void pause()
+	{
+	    paused = true;
+	    Time.timeScale = 0;
+	    pauseGUI.SetActiveRecursively(true);
+	    gameGUI.SetActiveRecursively(false);
+	}
+	
+	void unpause()
+	{
+	    Time.timeScale = 1;
+	    paused = false;
+	    pauseGUI.SetActiveRecursively(false);
+	    gameGUI.SetActiveRecursively(true);
+	}
+	
+	void levelCompleted()
+	{	
+	    levelComplete = true;
+	    completeGUI.SetActiveRecursively(true);
+	    Time.timeScale = 0;
+	}
+	
+	public void levelFailed()
+	{
+	    gameOver = true;
+	    failGUI.SetActiveRecursively(true);
+	    Time.timeScale = 0;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 	  if (Input.GetKeyDown (KeyCode.Space))
 	  {
-	    if (gameOver)
-	    {
-	      started = false;
-	      gameOver = false;
-	      startGUI.SetActiveRecursively(true);
-	      endGUI.SetActiveRecursively(false);
-	      score = 0;
-	      Application.LoadLevel(Application.loadedLevel);
-	    }
+	    if (levelComplete)
+	      nextLevel();
+	    else if (gameOver)
+	      restartLevel();
 	    else if (!started)
-	    {
-	      Time.timeScale = 1;
-	      started = true;
-	      startGUI.SetActiveRecursively(false);
-	      gameGUI.SetActiveRecursively(true);
-	    }
+	      startLevel();
 	    else if (paused)
-	    {
-	      Time.timeScale = 1;
-	      paused = false;
-	      pauseGUI.SetActiveRecursively(false);
-	      gameGUI.SetActiveRecursively(true);
-	    }
+	      unpause();
 	    else
-	    {
-	      paused = true;
-	      Time.timeScale = 0;
-	      pauseGUI.SetActiveRecursively(true);
-	      gameGUI.SetActiveRecursively(false);
-	    }
+	      pause();
 	  }
 	  
-	  if (score == 4)
-	  {
-	    gameOver = true;
-	    endGUI.SetActiveRecursively(true);
-	    Time.timeScale = 0;
-	  }
+	  if (score >= targetScore)
+	    levelCompleted();
 	}
 	
-	public void UpdateScore()
+	public void updateScore()
 	{
 	  scoreText.text = "Score: " + score.ToString();
+	}
+	
+	public void updateLevel()
+	{
+	  levelText.text = "Level: " + level.ToString();
 	}
 }

@@ -59,7 +59,12 @@ public class PlayerControls : MonoBehaviour {
 	  {
 	    other.gameObject.SetActive(false);
 	    gameController.GetComponent<GameController>().score++;
-	    gameController.GetComponent<GameController>().UpdateScore();
+	    gameController.GetComponent<GameController>().updateScore();
+	  }
+	  
+	  if (other.gameObject.tag == "Monster")
+	  {
+	    gameController.GetComponent<GameController>().levelFailed();
 	  }
 	}
 	
