@@ -22,6 +22,9 @@ public class MazeDrawScript : MonoBehaviour {
 		testMaze= builder.maze;
 		testMaze = builder.Generate ();
 		//Maze testMaze = new Maze();
+		//testMaze.create (4,4);
+		//testMaze.fillValue (0);
+		//testMaze.drawPerimeter ();
 		//testMaze.fill(4,4,new int[,]{{9,8,8,10},{3,8,0,2},{1,0,6,2},{5,4,4,6}});
 		drawMaze (testMaze);
 	}
