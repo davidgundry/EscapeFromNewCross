@@ -231,6 +231,7 @@ MonoBehaviour:
   paused: 0
   levelComplete: 0
   score: 0
+  pillsInWorld: 0
   level: 1
   targetScore: 1
   levelToLoad: player

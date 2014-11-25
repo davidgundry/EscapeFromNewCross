@@ -11,15 +11,19 @@ public class PlayerControls : MonoBehaviour {
 	private float rotation;
 	private float posX;
 	public float turnSpeed;
+	
+	public KeyCode run;
 
 	private GameObject gameController;
 	
 	private CharacterController cController;
+	private Animator animator;
 	
 	// Use this for initialization
 	void Start () {
 	  cController = GetComponent<CharacterController>();
 	  gameController = GameObject.FindWithTag("GameController");
+	  animator = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -43,9 +47,19 @@ public class PlayerControls : MonoBehaviour {
 	  Vector3 movement = new Vector3(0.0f,0.0f,moveVertical) * speed;
 	  movement = transform.TransformDirection(movement);
 	  movement.y += yVelocity;
-	  cController.Move(movement * Time.deltaTime);
+	  //cController.Move(movement * Time.deltaTime);
+	  animator.SetFloat("speed",movement.magnitude);
 	  
-	  transform.position = new Vector3(transform.position.x,0.31f,transform.position.z);
+	  if (Input.GetKey(run))
+	  {
+	    animator.SetBool("running",true);
+	  }
+	  else
+	  {
+	    animator.SetBool("running",false);
+	  }
+	  
+	  //transform.position = new Vector3(transform.position.x,0.31f,transform.position.z);
 	  
 	  //posX = Input.GetAxis("Mouse X");
 	  Vector3 rot = transform.localEulerAngles;
