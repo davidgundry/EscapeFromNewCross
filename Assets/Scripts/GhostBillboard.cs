@@ -7,7 +7,6 @@ public class GhostBillboard : MonoBehaviour {
 	private Camera cam;
 	
 	public float speed;
-	public MazeManager mManager;
 	
 	private Stack<Vector3> moveStack;
 	private Maze maze;
@@ -16,8 +15,6 @@ public class GhostBillboard : MonoBehaviour {
 	void Start () {
 	  cam = Camera.main;
 	  moveStack = new Stack<Vector3>();
-	  pushPositionToStack(1.0f,1.0f);
-	  Maze maze = GameObject.Find("MazeDrawer").GetComponent<MazeManager>().currentMaze;
 	}
 	
 	// Update is called once per frame
@@ -27,11 +24,13 @@ public class GhostBillboard : MonoBehaviour {
 	
 	void pushPositionToStack(float x, float z)
 	{
-	  moveStack.Push(new Vector3(x,0.5f,z));
+	  moveStack.Push(new Vector3(x-(maze.width/2.0f),0.5f,z-(maze.height/2.0f)));
 	}
 	
 	void onEmptyStack()
 	{
+	  if (maze == null)
+	    maze = GameObject.Find("MazeDrawer").GetComponent<MazeManager>().currentMaze;
 	  int x = Random.Range(0,maze.width-1);
 	  int z = Random.Range(0,maze.height-1);
 	  pushPositionToStack(x+0.5f,z+0.5f);
