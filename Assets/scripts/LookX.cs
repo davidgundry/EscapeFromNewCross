@@ -13,7 +13,11 @@ public class LookX : MonoBehaviour {
 	public float maxDistance;
 	public float distance;
 	public Vector3 cameraDirection;
+	
+	public GameObject lookY;
 
+	public Vector3 rotationToApply;
+	
 	void Awake()
 	{
 	  distance = transform.localPosition.magnitude;
@@ -50,5 +54,17 @@ public class LookX : MonoBehaviour {
 	    distance = maxDistance;
 	    
 	  transform.localPosition = cameraDirection * distance;
+	    
+	  transform.Rotate(rotationToApply);
+	  rotationToApply = new Vector3(0,0,0);
+	  if (lookY.transform.rotation.eulerAngles.x > 12.0f)
+	    rotationToApply = new Vector3(-1.0f,0,0);
+	}
+	
+	void OnTriggerEnter()
+	{
+	  if (lookY.transform.rotation.eulerAngles.x < 70.0f)
+	    rotationToApply += new Vector3(10.0f,0,0);
+	  Debug.Log("Camera Collision");
 	}
 }
