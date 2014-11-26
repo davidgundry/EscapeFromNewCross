@@ -93,10 +93,14 @@ public class PlayerControls : MonoBehaviour {
 	      
 	      other.gameObject.transform.localScale = new Vector3(0.15f,0.15f,0.15f);
 
+	  if (!other.gameObject.GetComponent<Pill>().collected)
+	  {
 	      eatenDot=true;
+	      other.gameObject.GetComponent<Pill>().collected = true;
 	      //other.gameObject.SetActive(false);
 	      other.gameObject.GetComponent<Pill>().light.SetActive(true);
-				  //Destroy (other.gameObject);
+	      //Destroy (other.gameObject);
+	  }
 		   		
 
 	  }
