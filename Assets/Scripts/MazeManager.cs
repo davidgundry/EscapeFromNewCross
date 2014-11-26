@@ -6,6 +6,7 @@ using System.Collections;
 public class MazeManager : MonoBehaviour {
 
 	public GameObject wallPrefab;
+	public GameObject dotPrefab;
 	public int width;
 	public int height;
 	public int cellHeight;
@@ -31,6 +32,7 @@ public class MazeManager : MonoBehaviour {
 		currentMaze = builder.Generate (width, height);
 		drawMaze (currentMaze);
 		mazeFloor.setSize (width, height);
+		createDots ();
 	}
 	void removeCurrentMaze() {
 		GameObject[] allWalls;
@@ -40,8 +42,17 @@ public class MazeManager : MonoBehaviour {
 		}
 	}
 	int getMazeSize(int level) {
-		return 8;//Mathf.Clamp (level+3, 4, 10);
+		return Mathf.Clamp (level+3, 4, 10);
 	}
+	void createDots() {
+		Vector3 offset = new Vector3 (halfCellWidth, 0, halfCellWidth);
+		for (int x = 0; x < width; x++) {
+			for (int y = 0; y < height; y++) {
+				makePill (x,y,offset,Vector3.zero);
+			}
+		}
+
+		}
 	
 	void drawMaze(Maze drawMaze) {
 				Vector3 wallSize = wallPrefab.renderer.bounds.size;
@@ -74,6 +85,11 @@ public class MazeManager : MonoBehaviour {
 				GameObject newWall = (GameObject)Instantiate (wallPrefab, position+offset, Quaternion.Euler (rotate));
 				newWall.transform.parent = transform;
 		}
+	void makePill(int x, int y,Vector3 offset,Vector3 rotate) {
+		Vector3 position = new Vector3 (cellWidth * (0.5f+x-(width/2.0f)), 0, cellHeight * (0.5f+y-(height/2.0f))) + transform.position;
+		GameObject newDot = (GameObject)Instantiate (dotPrefab, position+offset, Quaternion.Euler (rotate));
+		newDot.transform.parent = transform;
+	}
 
 	
 
