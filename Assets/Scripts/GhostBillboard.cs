@@ -31,8 +31,8 @@ public class GhostBillboard : MonoBehaviour {
 	{
 	  if (maze == null)
 	    maze = GameObject.Find("MazeDrawer").GetComponent<MazeManager>().currentMaze;
-	  int x = Random.Range(0,maze.width-1);
-	  int z = Random.Range(0,maze.height-1);
+	  int x = Random.Range(0,maze.width);
+	  int z = Random.Range(0,maze.height);
 	  pushPositionToStack(x+0.5f,z+0.5f);
 	}
 	

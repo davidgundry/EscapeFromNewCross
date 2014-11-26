@@ -3417,6 +3417,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 12f5844c9fabc457bbc5932aded67c47, type: 2}
+      propertyPath: dotPrefab
+      value: 
+      objectReference: {fileID: 100000, guid: 08cdb376ce8ff4141958ec2ecfdf4fb2, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 12f5844c9fabc457bbc5932aded67c47, type: 2}
   m_RootGameObject: {fileID: 1270176846}
@@ -4217,7 +4221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wallPrefab: {fileID: 100000, guid: c0a9674504882425fbfe70a862495cc2, type: 2}
-  dotPrefab: {fileID: 0}
+  dotPrefab: {fileID: 100000, guid: 08cdb376ce8ff4141958ec2ecfdf4fb2, type: 2}
   width: 6
   height: 6
   cellHeight: 1
