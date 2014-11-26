@@ -48,7 +48,7 @@ public class PlayerControls : MonoBehaviour {
 	  movement = transform.TransformDirection(movement);
 	  movement.y += yVelocity;
 	  //cController.Move(movement * Time.deltaTime);
-	  animator.SetFloat("speed",movement.magnitude);
+	  animator.SetFloat("speed",moveVertical*speed);
 	  
 	  if (Input.GetKey(run))
 	  {
