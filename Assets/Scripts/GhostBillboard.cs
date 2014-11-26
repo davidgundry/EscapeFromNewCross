@@ -49,16 +49,8 @@ public class GhostBillboard : MonoBehaviour {
 	  return new Vector3(x-(maze.width/2)+0.5f,0.5f,y-(maze.width/2)+0.5f);
 	}
 	
-	
-	
-	void onEmptyStack()
+	bool moveInDirection()
 	{
-	  if (maze == null)
-	  {
-	    maze = GameObject.Find("MazeDrawer").GetComponent<MazeManager>().currentMaze;
-	    direction = Directions.N;
-	  }
-	  
 	  bool cantMove = true;
 	  if (!maze.hasDirection(cellX(),cellY(),direction))
 	  {
@@ -95,19 +87,46 @@ public class GhostBillboard : MonoBehaviour {
 	      }
 	    }
 	  }
-	  
-	  if (cantMove)
+	  return !cantMove;
+	}
+	
+	void moveRandomOnCollide()
+	{
+	  if (!moveInDirection())
 	  {
-	    int d = (int) Mathf.Floor(Random.Range(0,3.9f));
-	    if (d == 0)
-	      direction = Directions.N;
-	    else if (d == 1)
-	      direction = Directions.E;
-	    else if (d == 2)
-	      direction = Directions.S;
-	    else if (d == 3)
-	      direction = Directions.W;
+	    randomiseDirection();
 	  }
+	}
+	
+	void randomiseDirection()
+	{
+	  int d = (int) Mathf.Floor(Random.Range(0,3.9f));
+	  if (d == 0)
+	    direction = Directions.N;
+	  else if (d == 1)
+	    direction = Directions.E;
+	  else if (d == 2)
+	    direction = Directions.S;
+	  else if (d == 3)
+	    direction = Directions.W;
+	}
+	
+	void moveRandomly()
+	{
+	  randomiseDirection();
+	  moveInDirection();
+	}
+	
+	void onEmptyStack()
+	{
+	  if (maze == null)
+	  {
+	    maze = GameObject.Find("MazeDrawer").GetComponent<MazeManager>().currentMaze;
+	    direction = Directions.N;
+	  }
+	  
+	  //moveRandomOnCollide();
+	  moveRandomly();
 	}
 	
 	void FixedUpdate()
