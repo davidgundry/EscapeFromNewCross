@@ -71,11 +71,11 @@ public class PlayerControls : MonoBehaviour {
 		if (eatenDot) {
 			eatenDot=false;
 			Debug.Log ("increase score");
-						gameController.GetComponent<GameController> ().score++;
-						gameController.GetComponent<GameController> ().pillsInWorld--;
-						gameController.GetComponent<GameController> ().updateScore ();
+			gameController.GetComponent<GameController> ().score++;
+			gameController.GetComponent<GameController> ().pillsInWorld--;
+			gameController.GetComponent<GameController> ().updateScore ();
 						
-				}
+		}
 
 	}
 	
@@ -97,19 +97,10 @@ public class PlayerControls : MonoBehaviour {
 		   		
 
 	  }
-	 /* if (other.gameObject.tag == "Cherries")
-	  {
-	    other.gameObject.SetActive(false);
-	    gameController.GetComponent<GameController>().score+=10;
-	    gameController.GetComponent<GameController>().updateScore();
-	  }*/
-	}
 	
-	void OnCollisionEnter(Collision collision)
-	{
-	  
-	}
+
 	
 	
 	
+}
 }
