@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerControls : MonoBehaviour {
 
@@ -15,6 +16,7 @@ public class PlayerControls : MonoBehaviour {
 	public KeyCode run;
 
 	private GameObject gameController;
+	private List<int> eatenDots;
 	
 	private CharacterController cController;
 	private Animator animator;
@@ -24,6 +26,7 @@ public class PlayerControls : MonoBehaviour {
 	  cController = GetComponent<CharacterController>();
 	  gameController = GameObject.FindWithTag("GameController");
 	  animator = GetComponent<Animator>();
+		eatenDots = new List<int>();
 	}
 	
 	// Update is called once per frame
@@ -72,10 +75,11 @@ public class PlayerControls : MonoBehaviour {
 	{
 	  if (other.gameObject.tag == "Pill")
 	  {
-			Debug.Log ("eat pill "+other.gameObject.GetComponent<Pill>().collected);
-			if (other.gameObject.GetComponent<Pill>().collected==false) {
-				other.gameObject.GetComponent<Pill>().collected=true;
+			Debug.Log ("eat pill "+other.gameObject.GetComponent<Pill>().index);
 
+			if (!eatenDots.Contains(other.gameObject.GetComponent<Pill>().index)) {
+				eatenDots.Add (other.gameObject.GetComponent<Pill>().index);
+				//Debug.Log ("list ="+eatenDots.ToString ());
 		    	other.gameObject.SetActive(false);
 				//Destroy (other.gameObject);
 		   		gameController.GetComponent<GameController>().score++;
