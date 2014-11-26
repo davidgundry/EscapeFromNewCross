@@ -32,7 +32,7 @@ public class MazeManager : MonoBehaviour {
 		currentMaze = builder.Generate (width, height);
 		drawMaze (currentMaze);
 		mazeFloor.setSize (width, height);
-		createDots ();
+		//createDots ();
 	}
 	void removeCurrentMaze() {
 		GameObject[] allWalls;
@@ -51,8 +51,7 @@ public class MazeManager : MonoBehaviour {
 				makePill (x,y,offset,Vector3.zero);
 			}
 		}
-
-		}
+	}
 	
 	void drawMaze(Maze drawMaze) {
 				Vector3 wallSize = wallPrefab.renderer.bounds.size;
