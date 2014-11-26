@@ -48,7 +48,7 @@ public class GameController : MonoBehaviour {
 	    gameGUI.SetActive(false);
 	    failGUI.SetActive(false);
 	    completeGUI.SetActive(false);
-		targetScore = 999;
+		pillsInWorld = 999;
 	    Time.timeScale = 0;
 	    updateLevel();
 	}
@@ -71,7 +71,6 @@ public class GameController : MonoBehaviour {
 	void startStartGUI()
 	{
 	    updateLevel();
-	    score = 0;
 
 	    started = false;
 	    gameOver = false;
@@ -79,8 +78,8 @@ public class GameController : MonoBehaviour {
 	    startGUI.SetActive(true);
 	    failGUI.SetActive(false);
 	    completeGUI.SetActive(false);
-	    GameObject[] pills = GameObject.FindGameObjectsWithTag("Pill");
-	    pillsInWorld = pills.Length;
+	    /*GameObject[] pills = GameObject.FindGameObjectsWithTag("Pill");
+	    pillsInWorld = pills.Length;*/
 	}
 	
 	void loadLevel()
@@ -118,6 +117,7 @@ public class GameController : MonoBehaviour {
 	void levelCompleted()
 	{	
 	    levelComplete = true;
+		pillsInWorld = 999;
 	    completeGUI.SetActive(true);
 	    Time.timeScale = 0;
 	}
@@ -147,13 +147,13 @@ public class GameController : MonoBehaviour {
 	      pause();
 	  }
 	  
-	  if (score >= targetScore)
+	  if (pillsInWorld <=0)
 	    levelCompleted();
 	}
 	
 	public void updateScore()
 	{
-	  scoreText.text = "Score: " + score.ToString();
+	  scoreText.text = "Dots left: " + pillsInWorld.ToString();
 	}
 	
 	public void updateLevel()

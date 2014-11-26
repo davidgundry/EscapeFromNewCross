@@ -16,7 +16,7 @@ public class PlayerControls : MonoBehaviour {
 	public KeyCode run;
 
 	private GameObject gameController;
-	private List<int> eatenDots;
+	private bool eatenDot=false;
 	
 	private CharacterController cController;
 	private Animator animator;
@@ -26,7 +26,6 @@ public class PlayerControls : MonoBehaviour {
 	  cController = GetComponent<CharacterController>();
 	  gameController = GameObject.FindWithTag("GameController");
 	  animator = GetComponent<Animator>();
-		eatenDots = new List<int>();
 	}
 	
 	// Update is called once per frame
@@ -69,6 +68,15 @@ public class PlayerControls : MonoBehaviour {
 	  rotation += moveHorizontal * turnSpeed;
 	  rot.y = rotation;
 	  transform.localEulerAngles = rot;
+		if (eatenDot) {
+			eatenDot=false;
+			Debug.Log ("increase score");
+						gameController.GetComponent<GameController> ().score++;
+						gameController.GetComponent<GameController> ().pillsInWorld--;
+						gameController.GetComponent<GameController> ().updateScore ();
+						
+				}
+
 	}
 	
 	void OnTriggerEnter(Collider other)
@@ -77,15 +85,11 @@ public class PlayerControls : MonoBehaviour {
 	  {
 			Debug.Log ("eat pill "+other.gameObject.GetComponent<Pill>().index);
 
-			if (!eatenDots.Contains(other.gameObject.GetComponent<Pill>().index)) {
-				eatenDots.Add (other.gameObject.GetComponent<Pill>().index);
-				//Debug.Log ("list ="+eatenDots.ToString ());
-		    	other.gameObject.SetActive(false);
+			eatenDot=true;
+		    other.gameObject.SetActive(false);
 				//Destroy (other.gameObject);
-		   		gameController.GetComponent<GameController>().score++;
-		   		gameController.GetComponent<GameController>().updateScore();
-		    	gameController.GetComponent<GameController>().pillsInWorld--;
-			}
+		   		
+
 	  }
 	 /* if (other.gameObject.tag == "Cherries")
 	  {
