@@ -29,15 +29,27 @@ public class GhostBillboard : MonoBehaviour {
 	  moveStack.Push(new Vector3(x-(maze.width/2.0f),0.5f,z-(maze.height/2.0f)));
 	}
 	
+	void pushTargetToStack(Vector3 target)
+	{
+	  moveStack.Push(target);
+	}
+	
 	int cellX()
 	{
-	  return (int) transform.position.x + maze.width/2;
+	  return (int) Mathf.Floor(transform.position.x + maze.width/2);
 	}
 	
 	int cellY()
 	{
-	  return (int) transform.position.z + maze.height/2;
+	  return (int) Mathf.Floor(transform.position.z + maze.height/2);
 	}
+	
+	Vector3 worldPositionOfCell(int x, int y)
+	{
+	  return new Vector3(x-(maze.width/2)+0.5f,0.5f,y-(maze.width/2)+0.5f);
+	}
+	
+	
 	
 	void onEmptyStack()
 	{
@@ -47,24 +59,22 @@ public class GhostBillboard : MonoBehaviour {
 	    direction = Directions.N;
 	  }
 	  
-	  Debug.Log("x:"+cellX()+" y:"+cellY());
-	  
 	  bool cantMove = true;
 	  if (!maze.hasDirection(cellX(),cellY(),direction))
 	  {
 	    if (direction == Directions.N)
 	    {
-	      if (!maze.hasDirection(cellX(),cellY()+1,Directions.S))
+	      if (!maze.hasDirection(cellX(),cellY()-1,Directions.S))
 	      {
-		pushPositionToStack(cellX()+0.5f,cellY()+1.5f);
+		pushTargetToStack(worldPositionOfCell(cellX(),cellY()-1));
 		cantMove = false;
 	      }
 	    }
 	    else if (direction == Directions.S)
 	    {
-	      if (!maze.hasDirection(cellX(),cellY()-1,Directions.N))
+	      if (!maze.hasDirection(cellX(),cellY()+1,Directions.N))
 	      {
-		pushPositionToStack(cellX()+0.5f,cellY()-0.5f);
+		pushTargetToStack(worldPositionOfCell(cellX(),cellY()+1));
 		cantMove = false;
 	      }
 	    }
@@ -72,7 +82,7 @@ public class GhostBillboard : MonoBehaviour {
 	    {
 	      if (!maze.hasDirection(cellX()+1,cellY(),Directions.W))
 	      {
-		pushPositionToStack(cellX()+1.5f,cellY()+0.5f);
+		pushTargetToStack(worldPositionOfCell(cellX()+1,cellY()));
 		cantMove = false;
 	      }
 	    }
@@ -80,7 +90,7 @@ public class GhostBillboard : MonoBehaviour {
 	    {
 	      if (!maze.hasDirection(cellX()-1,cellY(),Directions.E))
 	      {
-		pushPositionToStack(cellX()-0.5f,cellY()+0.5f);
+		pushTargetToStack(worldPositionOfCell(cellX()-1,cellY()));
 		cantMove = false;
 	      }
 	    }
@@ -88,7 +98,7 @@ public class GhostBillboard : MonoBehaviour {
 	  
 	  if (cantMove)
 	  {
-	    int d = Random.Range(0,3);
+	    int d = (int) Mathf.Floor(Random.Range(0,3.9f));
 	    if (d == 0)
 	      direction = Directions.N;
 	    else if (d == 1)
