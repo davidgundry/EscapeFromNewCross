@@ -538,6 +538,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 08cdb376ce8ff4141958ec2ecfdf4fb2, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 08cdb376ce8ff4141958ec2ecfdf4fb2, type: 2}
   m_RootGameObject: {fileID: 844586932}
@@ -803,6 +807,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100070, guid: 32332a399987f55449a1ed64df1913a1, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100090, guid: 32332a399987f55449a1ed64df1913a1, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 32332a399987f55449a1ed64df1913a1, type: 2}
   m_RootGameObject: {fileID: 1787274094}
@@ -1001,6 +1013,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: f92755b35938b4540906a19b299ee3de, type: 2}
+      propertyPath: dotPrefab
+      value: 
+      objectReference: {fileID: 100000, guid: 08cdb376ce8ff4141958ec2ecfdf4fb2, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f92755b35938b4540906a19b299ee3de, type: 2}
   m_RootGameObject: {fileID: 989643842}
@@ -2207,7 +2223,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &617143632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2220,6 +2236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95aa3bf8f6a8fff4295e1d943c538e0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collected: 0
 --- !u!23 &617143633
 Renderer:
   m_ObjectHideFlags: 0
@@ -2513,7 +2530,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &780713283
 Transform:
   m_ObjectHideFlags: 0
@@ -2660,7 +2677,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &844586933
 Transform:
   m_ObjectHideFlags: 0
@@ -2686,6 +2703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95aa3bf8f6a8fff4295e1d943c538e0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collected: 0
 --- !u!23 &844586935
 Renderer:
   m_ObjectHideFlags: 0
@@ -3125,7 +3143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wallPrefab: {fileID: 100000, guid: c0a9674504882425fbfe70a862495cc2, type: 2}
-  dotPrefab: {fileID: 0}
+  dotPrefab: {fileID: 100000, guid: 08cdb376ce8ff4141958ec2ecfdf4fb2, type: 2}
   width: 6
   height: 6
   cellHeight: 1
@@ -4574,6 +4592,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 08cdb376ce8ff4141958ec2ecfdf4fb2, type: 2}
       propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 08cdb376ce8ff4141958ec2ecfdf4fb2, type: 2}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

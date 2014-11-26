@@ -5,6 +5,7 @@ public class Pill : MonoBehaviour {
 
 
 	private Camera cam;
+	public bool collected=false;
 
 	// Use this for initialization
 	void Start () {

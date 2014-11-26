@@ -48,7 +48,7 @@ public class GameController : MonoBehaviour {
 	    gameGUI.SetActive(false);
 	    failGUI.SetActive(false);
 	    completeGUI.SetActive(false);
-
+		targetScore = 999;
 	    Time.timeScale = 0;
 	    updateLevel();
 	}
@@ -72,6 +72,7 @@ public class GameController : MonoBehaviour {
 	{
 	    updateLevel();
 	    score = 0;
+
 	    started = false;
 	    gameOver = false;
 	    levelComplete = false;
@@ -90,7 +91,8 @@ public class GameController : MonoBehaviour {
 	void startLevel()
 	{
 		maze = (MazeManager) GameObject.Find ("MazeDrawer").GetComponent(typeof(MazeManager));
-		maze.createNewMaze(level);
+		pillsInWorld = maze.createNewMaze (level);
+		targetScore = pillsInWorld;
 		Time.timeScale = 1;
 	    started = true;
 	    startGUI.SetActive(false);

@@ -12,7 +12,7 @@ public class MazeManager : MonoBehaviour {
 	public int cellHeight;
 	public int cellWidth;
 	private float halfCellWidth, halfCellHeight;
-	private Maze currentMaze;
+	public Maze currentMaze;
 	private MazeBuilder builder;
 	private Floor mazeFloor;
 	//private int[,] cells = new int[,]{{9,3,1,5},{8,8,0,4},{8,0,6,4},{10,2,2,6}};
@@ -25,14 +25,15 @@ public class MazeManager : MonoBehaviour {
 		createNewMaze (1);
 
 	}
-	public void createNewMaze(int newLevel) {
+	public int createNewMaze(int newLevel) {
 		width = getMazeSize (newLevel);
 		height = width;
 		removeCurrentMaze ();
 		currentMaze = builder.Generate (width, height);
 		drawMaze (currentMaze);
 		mazeFloor.setSize (width, height);
-		//createDots ();
+		createDots ();
+		return width * height;
 	}
 	void removeCurrentMaze() {
 		GameObject[] allWalls;
@@ -85,7 +86,7 @@ public class MazeManager : MonoBehaviour {
 				newWall.transform.parent = transform;
 		}
 	void makePill(int x, int y,Vector3 offset,Vector3 rotate) {
-		Vector3 position = new Vector3 (cellWidth * (0.5f+x-(width/2.0f)), 0, cellHeight * (0.5f+y-(height/2.0f))) + transform.position;
+		Vector3 position = new Vector3 (cellWidth * (x-(width/2.0f)), 0, cellHeight * (y-(height/2.0f))) + transform.position;
 		GameObject newDot = (GameObject)Instantiate (dotPrefab, position+offset, Quaternion.Euler (rotate));
 		newDot.transform.parent = transform;
 	}

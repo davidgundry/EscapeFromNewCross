@@ -72,17 +72,23 @@ public class PlayerControls : MonoBehaviour {
 	{
 	  if (other.gameObject.tag == "Pill")
 	  {
-	    other.gameObject.SetActive(false);
-	    gameController.GetComponent<GameController>().score++;
-	  //  gameController.GetComponent<GameController>().updateScore();
-	    gameController.GetComponent<GameController>().pillsInWorld--;
+			Debug.Log ("eat pill "+other.gameObject.GetComponent<Pill>().collected);
+			if (other.gameObject.GetComponent<Pill>().collected==false) {
+				other.gameObject.GetComponent<Pill>().collected=true;
+
+		    	other.gameObject.SetActive(false);
+				//Destroy (other.gameObject);
+		   		gameController.GetComponent<GameController>().score++;
+		   		gameController.GetComponent<GameController>().updateScore();
+		    	gameController.GetComponent<GameController>().pillsInWorld--;
+			}
 	  }
-	  if (other.gameObject.tag == "Cherries")
+	 /* if (other.gameObject.tag == "Cherries")
 	  {
 	    other.gameObject.SetActive(false);
 	    gameController.GetComponent<GameController>().score+=10;
 	    gameController.GetComponent<GameController>().updateScore();
-	  }
+	  }*/
 	}
 	
 	void OnCollisionEnter(Collision collision)
