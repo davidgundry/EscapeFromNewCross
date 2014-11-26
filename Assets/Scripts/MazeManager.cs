@@ -13,19 +13,24 @@ public class MazeManager : MonoBehaviour {
 	private float halfCellWidth, halfCellHeight;
 	private Maze currentMaze;
 	private MazeBuilder builder;
+	private Floor mazeFloor;
 	//private int[,] cells = new int[,]{{9,3,1,5},{8,8,0,4},{8,0,6,4},{10,2,2,6}};
 	// Use this for initialization
 	void Start () {
+		mazeFloor = (Floor)GameObject.Find ("Floor").GetComponent (typeof(Floor));
 		halfCellWidth = cellWidth / 2.0f;
 		halfCellHeight = cellHeight / 2.0f;
 		builder = new MazeBuilder ();
-		//createNewMaze (1);
+		createNewMaze (1);
 
 	}
 	public void createNewMaze(int newLevel) {
+		width = getMazeSize (newLevel);
+		height = width;
 		removeCurrentMaze ();
 		currentMaze = builder.Generate (width, height);
 		drawMaze (currentMaze);
+		mazeFloor.setSize (width, height);
 	}
 	void removeCurrentMaze() {
 		GameObject[] allWalls;
@@ -33,6 +38,9 @@ public class MazeManager : MonoBehaviour {
 		foreach (GameObject wall in allWalls) {
 			Destroy (wall);
 		}
+	}
+	int getMazeSize(int level) {
+		return 8;//Mathf.Clamp (level+3, 4, 10);
 	}
 	
 	void drawMaze(Maze drawMaze) {
