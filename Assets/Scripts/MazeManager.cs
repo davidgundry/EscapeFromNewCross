@@ -25,14 +25,15 @@ public class MazeManager : MonoBehaviour {
 		createNewMaze (1);
 
 	}
-	public void createNewMaze(int newLevel) {
+	public int createNewMaze(int newLevel) {
 		width = getMazeSize (newLevel);
 		height = width;
 		removeCurrentMaze ();
 		currentMaze = builder.Generate (width, height);
 		drawMaze (currentMaze);
 		mazeFloor.setSize (width, height);
-		//createDots ();
+		createDots ();
+		return width * height;
 	}
 	void removeCurrentMaze() {
 		GameObject[] allWalls;
@@ -48,7 +49,8 @@ public class MazeManager : MonoBehaviour {
 		Vector3 offset = new Vector3 (halfCellWidth, 0, halfCellWidth);
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
-				makePill (x,y,offset,Vector3.zero);
+				GameObject newPill=makePill (x,y,offset,Vector3.zero);
+				newPill.GetComponent<Pill>().index= x*height+y;
 			}
 		}
 	}
@@ -84,10 +86,11 @@ public class MazeManager : MonoBehaviour {
 				GameObject newWall = (GameObject)Instantiate (wallPrefab, position+offset, Quaternion.Euler (rotate));
 				newWall.transform.parent = transform;
 		}
-	void makePill(int x, int y,Vector3 offset,Vector3 rotate) {
-		Vector3 position = new Vector3 (cellWidth * (0.5f+x-(width/2.0f)), 0, cellHeight * (0.5f+y-(height/2.0f))) + transform.position;
+	GameObject makePill(int x, int y,Vector3 offset,Vector3 rotate) {
+		Vector3 position = new Vector3 (cellWidth * (x-(width/2.0f)), 0, cellHeight * (y-(height/2.0f))) + transform.position;
 		GameObject newDot = (GameObject)Instantiate (dotPrefab, position+offset, Quaternion.Euler (rotate));
 		newDot.transform.parent = transform;
+		return newDot;
 	}
 
 	
