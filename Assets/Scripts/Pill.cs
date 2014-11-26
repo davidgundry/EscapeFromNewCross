@@ -7,10 +7,14 @@ public class Pill : MonoBehaviour {
 	private Camera cam;
 	public bool collected=false;
 	public int index;
+	
+	public GameObject light;
 
 	// Use this for initialization
 	void Start () {
 	  cam = Camera.main;
+	  light.SetActive(false);
+	  transform.localScale -= new Vector3(0.2f,0.2f,0.2f);
 	}
 	
 	// Update is called once per frame

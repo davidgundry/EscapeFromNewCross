@@ -83,11 +83,14 @@ public class PlayerControls : MonoBehaviour {
 	{
 	  if (other.gameObject.tag == "Pill")
 	  {
-			Debug.Log ("eat pill "+other.gameObject.GetComponent<Pill>().index);
+	      Debug.Log ("eat pill "+other.gameObject.GetComponent<Pill>().index);
+	      
+	      other.gameObject.transform.localScale = new Vector3(0.15f,0.15f,0.15f);
 
-			eatenDot=true;
-		    other.gameObject.SetActive(false);
-				//Destroy (other.gameObject);
+	      eatenDot=true;
+	      //other.gameObject.SetActive(false);
+	      other.gameObject.GetComponent<Pill>().light.SetActive(true);
+				  //Destroy (other.gameObject);
 		   		
 
 	  }
