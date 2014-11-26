@@ -49,45 +49,99 @@ public class GhostBillboard : MonoBehaviour {
 	  return new Vector3(x-(maze.width/2)+0.5f,0.5f,y-(maze.width/2)+0.5f);
 	}
 	
+	bool isWallInDirection(Directions d)
+	{
+	  if (d == Directions.N)
+	    return isWallNorth();
+	  else if (d == Directions.S)
+	    return isWallSouth();
+	  else if (d == Directions.E)
+	    return isWallEast();
+	  else if (d == Directions.W)
+	    return isWallWest();
+	  else
+	    return true;
+	}
+	
+	bool isWorldEdgeNorth()
+	{
+	  return cellY() == 0;
+	}
+	
+	bool isWorldEdgeSouth()
+	{
+	  return cellY() == maze.height-1;
+	}
+	
+	bool isWorldEdgeEast()
+	{
+	  return cellX() == maze.width-1;
+	}
+	
+	bool isWorldEdgeWest()
+	{
+	  return cellX() == 0;
+	}
+	
+	bool isWallNorth()
+	{
+	  if (isWorldEdgeNorth())
+	    return true;
+	  return ((maze.hasDirection(cellX(),cellY(),Directions.N)) || (maze.hasDirection(cellX(),cellY()-1,Directions.S)));
+	}
+	bool isWallSouth()
+	{
+	  if (isWorldEdgeSouth())
+	    return true;
+	  return ((maze.hasDirection(cellX(),cellY(),Directions.S)) || (maze.hasDirection(cellX(),cellY()+1,Directions.N)));
+	}
+	bool isWallEast()
+	{
+	  if (isWorldEdgeEast())
+	    return true;
+	  return ((maze.hasDirection(cellX(),cellY(),Directions.E)) || (maze.hasDirection(cellX()+1,cellY(),Directions.W)));
+	}
+	bool isWallWest()
+	{
+	  if (isWorldEdgeWest())
+	    return true;
+	  return ((maze.hasDirection(cellX(),cellY(),Directions.W)) || (maze.hasDirection(cellX()-1,cellY(),Directions.E)));
+	}
+	
 	bool moveInDirection()
 	{
-	  bool cantMove = true;
-	  if (!maze.hasDirection(cellX(),cellY(),direction))
+	  if (direction == Directions.N)
 	  {
-	    if (direction == Directions.N)
-	    {
-	      if (!maze.hasDirection(cellX(),cellY()-1,Directions.S))
-	      {
-		pushTargetToStack(worldPositionOfCell(cellX(),cellY()-1));
-		cantMove = false;
-	      }
-	    }
-	    else if (direction == Directions.S)
-	    {
-	      if (!maze.hasDirection(cellX(),cellY()+1,Directions.N))
-	      {
-		pushTargetToStack(worldPositionOfCell(cellX(),cellY()+1));
-		cantMove = false;
-	      }
-	    }
-	    else if (direction == Directions.E)
-	    {
-	      if (!maze.hasDirection(cellX()+1,cellY(),Directions.W))
-	      {
-		pushTargetToStack(worldPositionOfCell(cellX()+1,cellY()));
-		cantMove = false;
-	      }
-	    }
-	    else if (direction == Directions.W)
-	    {
-	      if (!maze.hasDirection(cellX()-1,cellY(),Directions.E))
-	      {
-		pushTargetToStack(worldPositionOfCell(cellX()-1,cellY()));
-		cantMove = false;
-	      }
-	    }
+	    if (!isWallNorth())
+	      pushTargetToStack(worldPositionOfCell(cellX(),cellY()-1));
+	    else
+	      return false;
 	  }
-	  return !cantMove;
+	  
+	  if (direction == Directions.S)
+	  {
+	    if (!isWallSouth())
+	      pushTargetToStack(worldPositionOfCell(cellX(),cellY()+1));
+	    else
+	      return false;
+	  }
+	
+	  if (direction == Directions.E)
+	  {
+	    if (!isWallNorth())
+	      pushTargetToStack(worldPositionOfCell(cellX()+1,cellY()));
+	    else
+	      return false;
+	  }
+	  
+	  if (direction == Directions.W)
+	  {
+	    if (!isWallWest())
+	      pushTargetToStack(worldPositionOfCell(cellX()-1,cellY()));
+	    else
+	      return false;
+	  }
+	  return true;
 	}
 	
 	void moveRandomOnCollide()
@@ -117,16 +171,69 @@ public class GhostBillboard : MonoBehaviour {
 	  moveInDirection();
 	}
 	
+	Directions getAdjacentDirectionLeft()
+	{
+	  if (direction == Directions.N)
+	    return Directions.W;
+	  else if (direction == Directions.S)
+	    return Directions.E;
+	  else if (direction == Directions.E)
+	    return Directions.N;
+	  else
+	    return Directions.S;
+	}
+	
+	Directions getAdjacentDirectionRight()
+	{
+	  if (direction == Directions.N)
+	    return Directions.E;
+	  else if (direction == Directions.S)
+	    return Directions.W;
+	  else if (direction == Directions.E)
+	    return Directions.S;
+	  else
+	    return Directions.N;
+	}
+	
+	void followLeftWall()
+	{
+	  if (isWallInDirection(getAdjacentDirectionLeft()))
+	  {
+	    if (!moveInDirection())
+	      direction = getAdjacentDirectionRight();
+	  }
+	  else
+	  {
+	    direction = getAdjacentDirectionLeft();
+	    moveInDirection();
+	  }
+	}
+	
+	void followRightWall()
+	{
+	  if (isWallInDirection(getAdjacentDirectionRight()))
+	  {
+	    if (!moveInDirection())
+	      direction = getAdjacentDirectionLeft();
+	  }
+	  else
+	  {
+	    direction = getAdjacentDirectionRight();
+	    moveInDirection();
+	  }
+	}
+	
 	void onEmptyStack()
 	{
 	  if (maze == null)
 	  {
 	    maze = GameObject.Find("MazeDrawer").GetComponent<MazeManager>().currentMaze;
-	    direction = Directions.N;
+	    randomiseDirection();
 	  }
-	  
 	  //moveRandomOnCollide();
-	  moveRandomly();
+	  //moveRandomly();
+	  //followLeftWall();
+	  followRightWall();
 	}
 	
 	void FixedUpdate()
