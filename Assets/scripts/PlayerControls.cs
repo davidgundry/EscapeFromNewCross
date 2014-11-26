@@ -71,16 +71,22 @@ public class PlayerControls : MonoBehaviour {
 		if (eatenDot) {
 			eatenDot=false;
 			Debug.Log ("increase score");
-						gameController.GetComponent<GameController> ().score++;
-						gameController.GetComponent<GameController> ().pillsInWorld--;
-						gameController.GetComponent<GameController> ().updateScore ();
+			gameController.GetComponent<GameController> ().score++;
+			gameController.GetComponent<GameController> ().pillsInWorld--;
+			gameController.GetComponent<GameController> ().updateScore ();
 						
-				}
+		}
 
 	}
 	
 	void OnTriggerEnter(Collider other)
 	{
+
+		if (other.gameObject.tag == "Monster")
+		{
+			Debug.Log ("Hit a ghost");
+			gameController.GetComponent<GameController>().levelFailed();
+		}
 	  if (other.gameObject.tag == "Pill")
 	  {
 	      Debug.Log ("eat pill "+other.gameObject.GetComponent<Pill>().index);
@@ -94,22 +100,10 @@ public class PlayerControls : MonoBehaviour {
 		   		
 
 	  }
-	 /* if (other.gameObject.tag == "Cherries")
-	  {
-	    other.gameObject.SetActive(false);
-	    gameController.GetComponent<GameController>().score+=10;
-	    gameController.GetComponent<GameController>().updateScore();
-	  }*/
-	}
 	
-	void OnCollisionEnter(Collision collision)
-	{
-	  if (collision.gameObject.tag == "Monster")
-	  {
-	    gameController.GetComponent<GameController>().levelFailed();
-	  }
-	}
+
 	
 	
 	
+}
 }
