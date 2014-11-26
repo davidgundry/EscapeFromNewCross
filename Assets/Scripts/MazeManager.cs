@@ -7,6 +7,7 @@ public class MazeManager : MonoBehaviour {
 
 	public GameObject wallPrefab;
 	public GameObject dotPrefab;
+	public GameObject ghostPrefab;
 	public int width;
 	public int height;
 	public int cellHeight;
@@ -22,10 +23,11 @@ public class MazeManager : MonoBehaviour {
 		halfCellWidth = cellWidth / 2.0f;
 		halfCellHeight = cellHeight / 2.0f;
 		builder = new MazeBuilder ();
-		createNewMaze (1);
+		//createNewMaze (1);
 
 	}
 	public int createNewMaze(int newLevel) {
+		Debug.Log ("creating new maze " + newLevel);
 		width = getMazeSize (newLevel);
 		height = width;
 		removeCurrentMaze ();
@@ -33,6 +35,7 @@ public class MazeManager : MonoBehaviour {
 		drawMaze (currentMaze);
 		mazeFloor.setSize (width, height);
 		createDots ();
+		createGhosts (newLevel);
 		return width * height;
 	}
 	void removeCurrentMaze() {
@@ -54,6 +57,14 @@ public class MazeManager : MonoBehaviour {
 			}
 		}
 	}
+	void createGhosts(int newLevel) {
+				int numberOfGhosts = newLevel;
+				do {
+						Vector3 offset = new Vector3 (halfCellWidth, 0, halfCellWidth);
+						makeGhost (offset, Vector3.zero);
+						numberOfGhosts--;
+				} while (numberOfGhosts>0);
+		}
 	
 	void drawMaze(Maze drawMaze) {
 				Vector3 wallSize = wallPrefab.renderer.bounds.size;
@@ -92,6 +103,17 @@ public class MazeManager : MonoBehaviour {
 		newDot.transform.parent = transform;
 		return newDot;
 	}
+		void makeGhost(Vector3 offset,Vector3 rotate) {
+		Vector2 pos;
+			Vector2 player = new Vector2 (0, 0);
+		do {
+				pos = new Vector2 (Random.Range (0, width - 1), Random.Range (0, height - 1));
+		} while (Vector2.Distance(pos,player)<2);
+
+			Vector3 position = new Vector3 (cellWidth * (pos.x-(width/2.0f)), 0, cellHeight * (pos.y-(height/2.0f))) + transform.position;
+			GameObject newGhost = (GameObject)Instantiate (ghostPrefab, position+offset, Quaternion.Euler (rotate));
+			newGhost.transform.parent = transform;
+		}
 
 	
 

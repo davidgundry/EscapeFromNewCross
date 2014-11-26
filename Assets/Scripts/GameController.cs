@@ -18,10 +18,11 @@ public class GameController : MonoBehaviour {
 	public bool gameOver = false;
 	public bool paused = false;
 	public bool levelComplete = false;
+	private bool doPrepare;
 	
 	public int score = 0;
 	public int pillsInWorld;
-	public int level = 1;
+	public int level;
 	public int targetScore;
 	
 	public string levelToLoad;
@@ -50,7 +51,18 @@ public class GameController : MonoBehaviour {
 	    completeGUI.SetActive(false);
 		pillsInWorld = 999;
 	    Time.timeScale = 0;
-	    updateLevel();
+	    
+		startGame ();
+	}
+	void startGame() {
+		level = 1;
+		updateLevel();
+		started = false;
+
+
+		loadLevel ();
+		doPrepare = true;
+		//prepareLevel ();
 	}
 	
 	void nextLevel()
@@ -62,10 +74,8 @@ public class GameController : MonoBehaviour {
 	
 	void restartLevel()
 	{
-	    
 	    loadLevel();
-	    startStartGUI();
-	    
+	    startStartGUI();  
 	}
 	
 	void startStartGUI()
@@ -86,12 +96,21 @@ public class GameController : MonoBehaviour {
 	{
 	    Application.LoadLevel(Application.loadedLevel);
 	}
+
+	void prepareLevel() {
+		doPrepare = false;
+		Debug.Log ("prepare level");		
+		maze = (MazeManager)GameObject.Find ("MazeDrawer").GetComponent (typeof(MazeManager));
+		pillsInWorld = maze.createNewMaze (level);
+		targetScore = pillsInWorld;
+	}
+
+
+
 	
 	void startLevel()
 	{
-		maze = (MazeManager) GameObject.Find ("MazeDrawer").GetComponent(typeof(MazeManager));
-		pillsInWorld = maze.createNewMaze (level);
-		targetScore = pillsInWorld;
+		prepareLevel ();
 		Time.timeScale = 1;
 	    started = true;
 	    startGUI.SetActive(false);
@@ -133,6 +152,7 @@ public class GameController : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
+
 	  if (Input.GetKeyDown (KeyCode.Space))
 	  {
 	    if (levelComplete)
