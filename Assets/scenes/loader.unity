@@ -224,6 +224,7 @@ MonoBehaviour:
   gameGUI: {fileID: 1576368427}
   completeGUI: {fileID: 1343954391}
   failGUI: {fileID: 1660159427}
+  maze: {fileID: 0}
   scoreText: {fileID: 622880481}
   levelText: {fileID: 413599107}
   started: 0
@@ -234,7 +235,7 @@ MonoBehaviour:
   pillsInWorld: 0
   level: 1
   targetScore: 1
-  levelToLoad: player
+  levelToLoad: main scene
 --- !u!1 &527285528
 GameObject:
   m_ObjectHideFlags: 0
@@ -642,7 +643,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 34cfd00ef2aad3049bcac312d290379d, type: 2}
       propertyPath: levelToLoad
-      value: player
+      value: main scene
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 34cfd00ef2aad3049bcac312d290379d, type: 2}

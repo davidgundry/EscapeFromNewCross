@@ -3,7 +3,7 @@ using System.Collections;
 
 
 
-public class MazeDrawScript : MonoBehaviour {
+public class MazeManager : MonoBehaviour {
 
 	public GameObject wallPrefab;
 	public int width;
@@ -19,7 +19,7 @@ public class MazeDrawScript : MonoBehaviour {
 		halfCellWidth = cellWidth / 2.0f;
 		halfCellHeight = cellHeight / 2.0f;
 		builder = new MazeBuilder ();
-		createNewMaze (1);
+		//createNewMaze (1);
 
 	}
 	public void createNewMaze(int newLevel) {
