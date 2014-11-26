@@ -31,7 +31,9 @@ public class MazeManager : MonoBehaviour {
 		width = getMazeSize (newLevel);
 		height = width;
 		removeCurrentMaze ();
+		// generates maze shape
 		currentMaze = builder.Generate (width, height);
+		// adds maze prefabs to the scene
 		drawMaze (currentMaze);
 		mazeFloor.setSize (width, height);
 		createDots ();
@@ -65,10 +67,12 @@ public class MazeManager : MonoBehaviour {
 						numberOfGhosts--;
 				} while (numberOfGhosts>0);
 		}
-	
+
+	// Goes through the Maze data structure and creates prefab blocks in the right places and orientation
 	void drawMaze(Maze drawMaze) {
 				Vector3 wallSize = wallPrefab.renderer.bounds.size;
 				Debug.Log ("wall size =" + wallSize);
+				// offsets for each side of the cell
 				Vector3 Npos = new Vector3 (0, 0, -halfCellHeight + wallSize.z / 2);
 				Vector3 Spos = new Vector3 (0, 0, halfCellHeight - wallSize.z / 2);
 				Vector3 Wpos = new Vector3 (-halfCellWidth + wallSize.z / 2, 0, 0);
@@ -91,11 +95,11 @@ public class MazeManager : MonoBehaviour {
 				}
 		}
 
-
+	// Adds the wall prefab to the scene
 	void makeWall(int x, int y,Vector3 offset,Vector3 rotate) {
 		Vector3 position = new Vector3 (cellWidth * (0.5f+x-(width/2.0f)), 0, cellHeight * (0.5f+y-(height/2.0f))) + transform.position;
-				GameObject newWall = (GameObject)Instantiate (wallPrefab, position+offset, Quaternion.Euler (rotate));
-				newWall.transform.parent = transform;
+		GameObject newWall = (GameObject)Instantiate (wallPrefab, position+offset, Quaternion.Euler (rotate));
+		newWall.transform.parent = transform;
 		}
 	GameObject makePill(int x, int y,Vector3 offset,Vector3 rotate) {
 		Vector3 position = new Vector3 (cellWidth * (x-(width/2.0f)), 0, cellHeight * (y-(height/2.0f))) + transform.position;
