@@ -11,7 +11,7 @@ public class MazeManager : MonoBehaviour {
 	public int cellHeight;
 	public int cellWidth;
 	private float halfCellWidth, halfCellHeight;
-	private Maze currentMaze;
+	public Maze currentMaze;
 	private MazeBuilder builder;
 	private Floor mazeFloor;
 	//private int[,] cells = new int[,]{{9,3,1,5},{8,8,0,4},{8,0,6,4},{10,2,2,6}};
