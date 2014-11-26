@@ -24,9 +24,9 @@ public class GhostBillboard : MonoBehaviour {
 	  transform.LookAt(transform.position + cam.transform.rotation * new Vector3(0.0f,0.0f,1.0f),cam.transform.rotation * Vector3.up);
 	}
 	
-	void pushPositionToStack(float x, float z)
+	void pushCellToStack(int x, int y)
 	{
-	  moveStack.Push(new Vector3(x-(maze.width/2.0f),0.5f,z-(maze.height/2.0f)));
+	  moveStack.Push(worldPositionOfCell(x,y));
 	}
 	
 	void pushTargetToStack(Vector3 target)
@@ -113,7 +113,7 @@ public class GhostBillboard : MonoBehaviour {
 	  if (direction == Directions.N)
 	  {
 	    if (!isWallNorth())
-	      pushTargetToStack(worldPositionOfCell(cellX(),cellY()-1));
+	      pushCellToStack(cellX(),cellY()-1);
 	    else
 	      return false;
 	  }
@@ -121,15 +121,15 @@ public class GhostBillboard : MonoBehaviour {
 	  if (direction == Directions.S)
 	  {
 	    if (!isWallSouth())
-	      pushTargetToStack(worldPositionOfCell(cellX(),cellY()+1));
+	      pushCellToStack(cellX(),cellY()+1);
 	    else
 	      return false;
 	  }
 	
 	  if (direction == Directions.E)
 	  {
-	    if (!isWallNorth())
-	      pushTargetToStack(worldPositionOfCell(cellX()+1,cellY()));
+	    if (!isWallEast())
+	      pushCellToStack(cellX()+1,cellY());
 	    else
 	      return false;
 	  }
@@ -137,7 +137,7 @@ public class GhostBillboard : MonoBehaviour {
 	  if (direction == Directions.W)
 	  {
 	    if (!isWallWest())
-	      pushTargetToStack(worldPositionOfCell(cellX()-1,cellY()));
+	      pushCellToStack(cellX()-1,cellY());
 	    else
 	      return false;
 	  }
@@ -154,7 +154,7 @@ public class GhostBillboard : MonoBehaviour {
 	
 	void randomiseDirection()
 	{
-	  int d = (int) Mathf.Floor(Random.Range(0,3.9f));
+	  int d = (int) Mathf.Floor(Random.Range(0,3.99f));
 	  if (d == 0)
 	    direction = Directions.N;
 	  else if (d == 1)
@@ -214,10 +214,14 @@ public class GhostBillboard : MonoBehaviour {
 	  if (isWallInDirection(getAdjacentDirectionRight()))
 	  {
 	    if (!moveInDirection())
+	    {
+	      //Debug.Log("Collision change direction from " + (int) direction + " to " + (int)getAdjacentDirectionLeft()+".");
 	      direction = getAdjacentDirectionLeft();
+	    }
 	  }
 	  else
 	  {
+	    //Debug.Log("No wall change direction from " + (int) direction + " to " + (int)getAdjacentDirectionRight()+".");
 	    direction = getAdjacentDirectionRight();
 	    moveInDirection();
 	  }
@@ -230,10 +234,14 @@ public class GhostBillboard : MonoBehaviour {
 	    maze = GameObject.Find("MazeDrawer").GetComponent<MazeManager>().currentMaze;
 	    randomiseDirection();
 	  }
+	  
 	  //moveRandomOnCollide();
 	  //moveRandomly();
 	  //followLeftWall();
 	  followRightWall();
+	  
+	  //Debug.Log("x:"+cellX()+" y:"+cellY()+" dir:"+(int)direction+" X:"+transform.position.x+" Z:"+transform.position.z+"n:"+isWallNorth()+" e:"+isWallEast()+" s:"+isWallSouth()+" w:"+isWallWest());
+
 	}
 	
 	void FixedUpdate()
