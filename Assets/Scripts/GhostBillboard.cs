@@ -1,19 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GhostBillboard : MonoBehaviour {
 
 	private Camera cam;
-
-	public int targetX;
-	public float targetY = 0.5f;
-	public int targetZ;
 	
 	public float speed;
+	
+	private Stack<Vector3> moveStack;
 	
 	// Use this for initialization
 	void Start () {
 	  cam = Camera.main;
+	  moveStack = new Stack<Vector3>();
+	  pushPositionToStack(1.0f,1.0f);
 	}
 	
 	// Update is called once per frame
@@ -21,22 +22,38 @@ public class GhostBillboard : MonoBehaviour {
 	  transform.LookAt(transform.position + cam.transform.rotation * new Vector3(0.0f,0.0f,1.0f),cam.transform.rotation * Vector3.up);
 	}
 	
-	void moveTo(int x, int y)
+	void pushPositionToStack(float x, float z)
 	{
-	  targetX = x;
-	  targetY =y;
+	  moveStack.Push(new Vector3(x,0.5f,z));
+	}
+	
+	void onEmptyStack()
+	{
+	  int x = Random.Range(1,4);
+	  int z = Random.Range(1,4);
+	  pushPositionToStack(x,z);
 	}
 	
 	void FixedUpdate()
 	{
-	  Vector3 target = transform.InverseTransformPoint(targetX,targetY,targetZ);
-	  
-	  Vector3 direction = target - transform.position;
-	  direction.Normalize();
-	  
-	  float distanceToTarget = Vector3.Distance( new Vector3(transform.position.x,0.0f,transform.position.z), new Vector3(targetX,0.0f,targetZ));
-	  
-	  transform.Translate(direction*Mathf.Clamp(speed,0,distanceToTarget)*Time.deltaTime);
+	  if (moveStack.Count>0)
+	  {
+	    Vector3 target = moveStack.Peek();
+	    
+	    Vector3 direction = target - transform.position;
+	    float distanceToTarget = direction.magnitude;
+	    direction.Normalize();
+	    float moveAmount = Mathf.Clamp(distanceToTarget,0,speed*Time.deltaTime);
+	 
+	    transform.Translate(direction*moveAmount,Space.World);
+	    
+	    if (moveAmount < 0.001)
+	      moveStack.Pop();
+	  }
+	  else
+	  {
+	    onEmptyStack();
+	  }
 	    
 	}
 }
