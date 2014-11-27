@@ -38,7 +38,7 @@ public class MazeManager : MonoBehaviour {
 		drawMaze (currentMaze);
 		mazeFloor.setSize (width, height);
 		createDots ();
-		createGhosts (newLevel);
+		//createGhosts (newLevel);
 		return width * height;
 	}
 	void removeCurrentMaze() {
