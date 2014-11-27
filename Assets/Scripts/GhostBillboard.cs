@@ -36,17 +36,17 @@ public class GhostBillboard : MonoBehaviour {
 	
 	int cellX()
 	{
-	  return (int) Mathf.Floor(transform.position.x + maze.width/2);
+	  return (int) Mathf.Floor(transform.position.x + maze.width/2.0f);
 	}
 	
 	int cellY()
 	{
-	  return (int) Mathf.Floor(transform.position.z + maze.height/2);
+	  return (int) Mathf.Floor(transform.position.z + maze.height/2.0f);
 	}
 	
 	Vector3 worldPositionOfCell(int x, int y)
 	{
-	  return new Vector3(x-(maze.width/2)+0.5f,0.5f,y-(maze.width/2)+0.5f);
+	  return new Vector3(x-(maze.width/2.0f)+0.5f,0.5f,y-(maze.width/2.0f)+0.5f);
 	}
 	
 	bool isWallInDirection(Directions d)
