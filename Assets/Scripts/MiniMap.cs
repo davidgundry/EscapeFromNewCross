@@ -5,6 +5,7 @@ public class MiniMap : MonoBehaviour {
 
 	public GameObject wallPrefab;
 	public GameObject player;
+	public GameObject playerIcon;
 	public GameObject mainMap;
 	private MazeManager mazeManager;
 	private bool visible;
@@ -26,7 +27,7 @@ public class MiniMap : MonoBehaviour {
 	void Update () {
 		if (visible) {
 						Vector3 playerPos = player.transform.position;
-
+						playerIcon.transform.localPosition = player.transform.position;
 						Vector2 cellPos = new Vector2 (Mathf.Round(playerPos.x + (mazeManager.width / 2.0f) - 0.5f), Mathf.Round (playerPos.z + (mazeManager.height / 2.0f) - 0.5f));
 
 			Debug.Log ("The player is at " + player.transform.position.ToString () + "x="+(playerPos.x + (mazeManager.width / 2.0f) - 0.5f)+" cell=" + cellPos);
