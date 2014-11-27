@@ -27,11 +27,11 @@ public class MiniMap : MonoBehaviour {
 		if (visible) {
 						Vector3 playerPos = player.transform.position;
 
-						Vector2 cellPos = new Vector2 (Mathf.Round (playerPos.x + (mazeManager.width / 2) - 0.5f), Mathf.Round (playerPos.z + (mazeManager.height / 2) - 0.5f));
+						Vector2 cellPos = new Vector2 (Mathf.Round(playerPos.x + (mazeManager.width / 2.0f) - 0.5f), Mathf.Round (playerPos.z + (mazeManager.height / 2.0f) - 0.5f));
 
-						//Debug.Log ("The player is at " + player.transform.position.ToString () + "cell=" + cellPos);
+			Debug.Log ("The player is at " + player.transform.position.ToString () + "x="+(playerPos.x + (mazeManager.width / 2.0f) - 0.5f)+" cell=" + cellPos);
 						if (!mazeManager.currentMaze.hasVisited ((int)cellPos.x, (int)cellPos.y)) {
-								Debug.Log ("Draw cell at " + cellPos.ToString ());
+								//Debug.Log ("Draw cell at " + cellPos.ToString ());
 								drawCell ((int) cellPos.x,(int)cellPos.y);
 								mazeManager.currentMaze.setVisited ((int)cellPos.x, (int)cellPos.y, true);
 						}
@@ -62,8 +62,9 @@ public class MiniMap : MonoBehaviour {
 
 // Adds the wall prefab to the scene
 void makeWall(int x, int y,Vector3 offset,Vector3 rotate) {
-	Vector3 position = new Vector3 (cellWidth * (0.5f+x-(mazeManager.width/2.0f)), 0, cellHeight * (0.5f+y-(mazeManager.height/2.0f))) + transform.position;
+	Vector3 position = new Vector3 (cellWidth * (0.5f+x-(mazeManager.width/2.0f)), -1.5f, cellHeight * (0.5f+y-(mazeManager.height/2.0f))) + transform.position;
 	GameObject newWall = (GameObject)Instantiate (wallPrefab, position+offset, Quaternion.Euler (rotate));
+		Debug.Log ("Make wall at "+(position+offset).ToString ());
 	newWall.transform.parent = transform;
 }
 }

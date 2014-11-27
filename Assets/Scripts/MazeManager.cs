@@ -27,6 +27,7 @@ public class MazeManager : MonoBehaviour {
 
 	}
 	public int createNewMaze(int newLevel) {
+		newLevel = 10;
 		Debug.Log ("creating new maze " + newLevel);
 		width = getMazeSize (newLevel);
 		height = width;
