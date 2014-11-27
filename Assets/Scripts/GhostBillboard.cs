@@ -7,6 +7,7 @@ public class GhostBillboard : MonoBehaviour {
 	private Camera cam;
 	
 	public float speed;
+	public string type;
 	
 	private Stack<Vector3> moveStack;
 	private Maze maze;
@@ -235,10 +236,26 @@ public class GhostBillboard : MonoBehaviour {
 	    randomiseDirection();
 	  }
 	  
+	  
+	  switch (type)
+	  {
+	    case "inky":
+	      followRightWall();
+	      break;
+	    case "blinky":
+	      followLeftWall();
+	      break;
+	    case "pinky":
+	      followRightWall();
+	      break;
+	    case "clyde":
+	      moveRandomly();
+	      break;
+	  }
 	  //moveRandomOnCollide();
 	  //moveRandomly();
 	  //followLeftWall();
-	  followRightWall();
+	  //followRightWall();
 	  
 	  //Debug.Log("x:"+cellX()+" y:"+cellY()+" dir:"+(int)direction+" X:"+transform.position.x+" Z:"+transform.position.z+"n:"+isWallNorth()+" e:"+isWallEast()+" s:"+isWallSouth()+" w:"+isWallWest());
 

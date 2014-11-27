@@ -7,8 +7,11 @@ public class MazeManager : MonoBehaviour
 
 		public GameObject wallPrefab;
 		public GameObject dotPrefab;
-		public GameObject ghostPrefab;
-	public GameObject floorTilePrefab;
+		public GameObject blinkyPrefab;
+		public GameObject pinkyPrefab;
+		public GameObject inkyPrefab;
+		public GameObject clydePrefab;
+		public GameObject floorTilePrefab;
 		public int width;
 		public int height;
 		public int cellHeight;
@@ -80,13 +83,19 @@ public class MazeManager : MonoBehaviour
 		{
 				ghosts = new List<GameObject> ();
 
-				int numberOfGhosts = newLevel;
+				for (int i=0;i<newLevel;i++)
+				{
+				  ghosts.Add(makeGhost(i));
+				}
+				
+				
+				/*int numberOfGhosts = newLevel;
 				do {
 						
 						ghosts.Add (makeGhost ());
 
 						numberOfGhosts--;
-				} while (numberOfGhosts>0);
+				} while (numberOfGhosts>0);*/
 				setGhostPositions ();
 		}
 
@@ -145,13 +154,36 @@ public class MazeManager : MonoBehaviour
 				return newDot;
 		}
 
-		GameObject makeGhost ()
+		GameObject makeGhost (int i)
 		{
 				//Vector2 pos = Vector2.zero;
 				// all ghosts start on the edges of the maze
 
 				//	Vector3 position = new Vector3 (cellWidth * (pos.x-(width/2.0f)), 0, cellHeight * (pos.y-(height/2.0f))) + transform.position;
-				GameObject newGhost = (GameObject)Instantiate (ghostPrefab, Vector3.zero, Quaternion.identity);
+				GameObject prefab = blinkyPrefab;
+				if (i==0)
+				    prefab = blinkyPrefab;
+				else if (i==1)
+				    prefab = pinkyPrefab;
+				else if (i==2)
+				    prefab = inkyPrefab;
+				else if (i==3)
+				    prefab = clydePrefab;
+				else
+				{
+				  int r = Random.Range(0,3);
+				  if (r==0)
+				    prefab = blinkyPrefab;
+				  else if (r==1)
+				      prefab = pinkyPrefab;
+				  else if (r==2)
+				      prefab = inkyPrefab;
+				  else if (r==3)
+				      prefab = clydePrefab;
+				}
+				
+				  
+				GameObject newGhost = (GameObject)Instantiate (prefab, Vector3.zero, Quaternion.identity);
 				newGhost.transform.parent = transform;
 				return newGhost;
 		}

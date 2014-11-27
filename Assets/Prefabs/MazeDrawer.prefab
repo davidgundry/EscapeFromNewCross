@@ -113,7 +113,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wallPrefab: {fileID: 100000, guid: c0a9674504882425fbfe70a862495cc2, type: 2}
   dotPrefab: {fileID: 100002, guid: 08cdb376ce8ff4141958ec2ecfdf4fb2, type: 2}
-  ghostPrefab: {fileID: 100000, guid: b60f52d7c661df2429f34e692bf7669d, type: 2}
+  blinkyPrefab: {fileID: 100000, guid: dec518acb58257943a98c5f5c57f9d0a, type: 2}
+  pinkyPrefab: {fileID: 100000, guid: a6accdf7f8f743243804e9a4cedde35c, type: 2}
+  inkyPrefab: {fileID: 100000, guid: ddfb95f64e664f74297126e47a3c5941, type: 2}
+  clydePrefab: {fileID: 100000, guid: 4235137f359485e48abc6f61260814f8, type: 2}
   floorTilePrefab: {fileID: 100000, guid: 31e26dad4ea7c5e41a4a6cb3d421eb2e, type: 2}
   width: 6
   height: 6
