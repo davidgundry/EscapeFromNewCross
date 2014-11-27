@@ -79,6 +79,8 @@ public class GameController : MonoBehaviour {
 		updateLives ();
 		started = false;
 		state = GameStates.intro;
+		failGUI.SetActive(false);
+		startGUI.SetActive(true);
 
 
 		loadLevel ();
@@ -90,7 +92,9 @@ public class GameController : MonoBehaviour {
 	{
 	    level++;
 	    loadLevel();
-	    startStartGUI();
+		updateLevel();
+		startLevel ();
+	    //startStartGUI();
 	}
 	
 	void restartLevel()
@@ -132,8 +136,8 @@ public class GameController : MonoBehaviour {
 		miniMap.setVisible(isActive);
 	}
 	void setPlayerPos() {
-				GameObject Player = GameObject.Find ("Player");
-				Player.transform.position = new Vector3 (-0.5f + (maze.width % 2) / 2.0f, 0, -0.5f + (maze.height % 2) / 2.0f);
+		GameObject Player = GameObject.Find ("Player");
+		Player.transform.position = new Vector3 (-0.5f + (maze.width % 2) / 2.0f, 0, -0.5f + (maze.height % 2) / 2.0f);
 		}
 
 	
@@ -166,6 +170,7 @@ public class GameController : MonoBehaviour {
 	void levelCompleted()
 	{	
 	    levelComplete = true;
+		state = GameStates.levelComplete;
 		pillsInWorld = 999;
 	    completeGUI.SetActive(true);
 	    Time.timeScale = 0;
@@ -173,6 +178,7 @@ public class GameController : MonoBehaviour {
 	public void playerDied() {
 		gameGUI.SetActive (false);
 		lives--;
+		updateLives();
 		if (lives == 0) {
 				gameOver ();
 		} else {
@@ -200,6 +206,8 @@ public class GameController : MonoBehaviour {
 		state = GameStates.gameover;
 	    //gameOver = true;
 	    failGUI.SetActive(true);
+		Time.timeScale = 0;
+		state = GameStates.gameover;
 	    
 	    
 	}
@@ -217,6 +225,12 @@ public class GameController : MonoBehaviour {
 			case GameStates.died:
 				resumeLevel();
 				break;
+			case GameStates.gameover:
+				startGame ();
+				break;
+			case GameStates.levelComplete:
+				nextLevel ();
+				break;
 			}
 	   /* if (levelComplete)
 	      nextLevel();
@@ -230,7 +244,7 @@ public class GameController : MonoBehaviour {
 	      pause();*/
 	  }
 	  
-	  if (pillsInWorld <=0)
+	  if (pillsInWorld <=13)//0)
 	    levelCompleted();
 	}
 	
