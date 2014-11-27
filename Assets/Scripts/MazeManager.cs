@@ -9,6 +9,7 @@ public class MazeManager : MonoBehaviour {
 	public GameObject wallPrefab;
 	public GameObject dotPrefab;
 	public GameObject ghostPrefab;
+	public GameObject floorTilePrefab;
 	public int width;
 	public int height;
 	public int cellHeight;
@@ -87,6 +88,7 @@ public class MazeManager : MonoBehaviour {
 				Vector3 Epos = new Vector3 (halfCellWidth - wallSize.z / 2, 0, 0);
 				for (int x = 0; x < width; x++) {
 						for (int y = 0; y < height; y++) {
+								makeFloor(x,y);
 								if (drawMaze.hasDirection(x,y,Directions.N)) {
 										makeWall (x, y, Npos, Vector3.zero);
 								}
@@ -103,12 +105,24 @@ public class MazeManager : MonoBehaviour {
 				}
 		}
 
+	void makeFloor(int x, int y)
+	{
+		Vector3 offset = Vector3.zero;
+		Vector3 rotate = Vector3.zero;
+		Vector3 position = new Vector3 (cellWidth * (0.5f+x-(width/2.0f)), -0.5f, cellHeight * (0.5f+y-(height/2.0f))) + transform.position;
+		GameObject newFloor = (GameObject)Instantiate (floorTilePrefab, position+offset, Quaternion.Euler (rotate));
+		GameObject newCeiling = (GameObject)Instantiate (floorTilePrefab, position+offset+new Vector3(0,1.5f,0), Quaternion.Euler (rotate));
+		newFloor.transform.parent = transform;
+		newCeiling.transform.parent = transform;
+	}
+		
 	// Adds the wall prefab to the scene
 	void makeWall(int x, int y,Vector3 offset,Vector3 rotate) {
 		Vector3 position = new Vector3 (cellWidth * (0.5f+x-(width/2.0f)), 0, cellHeight * (0.5f+y-(height/2.0f))) + transform.position;
 		GameObject newWall = (GameObject)Instantiate (wallPrefab, position+offset, Quaternion.Euler (rotate));
 		newWall.transform.parent = transform;
 		}
+		
 	GameObject makePill(int x, int y,Vector3 offset,Vector3 rotate) {
 		Vector3 position = new Vector3 (cellWidth * (x-(width/2.0f)), 0, cellHeight * (y-(height/2.0f))) + transform.position;
 		GameObject newDot = (GameObject)Instantiate (dotPrefab, position+offset, Quaternion.Euler (rotate));
