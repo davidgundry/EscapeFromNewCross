@@ -235,19 +235,10 @@ public class GameController : MonoBehaviour {
 				nextLevel ();
 				break;
 			}
-	   /* if (levelComplete)
-	      nextLevel();
-	    else if (gameOver)
-	      restartLevel();
-	    else if (!started)
-	      startLevel();
-	    else if (paused)
-	      unpause();
-	    else
-	      pause();*/
+	   
 	  }
 	  
-	  if (pillsInWorld <=0))
+	  if (pillsInWorld <=0)
 	    levelCompleted();
 	}
 	
