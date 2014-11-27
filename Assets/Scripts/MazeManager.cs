@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 
 
@@ -16,6 +17,7 @@ public class MazeManager : MonoBehaviour {
 	public Maze currentMaze;
 	private MazeBuilder builder;
 	private Floor mazeFloor;
+	private List<GameObject> ghosts;
 	//private int[,] cells = new int[,]{{9,3,1,5},{8,8,0,4},{8,0,6,4},{10,2,2,6}};
 	// Use this for initialization
 	void Start () {
@@ -27,7 +29,7 @@ public class MazeManager : MonoBehaviour {
 
 	}
 	public int createNewMaze(int newLevel) {
-		newLevel = 10;
+		newLevel = 2;
 		Debug.Log ("creating new maze " + newLevel);
 		width = getMazeSize (newLevel);
 		height = width;
@@ -38,9 +40,12 @@ public class MazeManager : MonoBehaviour {
 		drawMaze (currentMaze);
 		mazeFloor.setSize (width, height);
 		createDots ();
-		//createGhosts (newLevel);
+		createGhosts (newLevel);
 		return width * height;
 	}
+	public List<GameObject> getGhosts() {
+				return ghosts;
+		}
 	void removeCurrentMaze() {
 		GameObject[] allWalls;
 		allWalls=GameObject.FindGameObjectsWithTag("wall");
@@ -61,10 +66,13 @@ public class MazeManager : MonoBehaviour {
 		}
 	}
 	void createGhosts(int newLevel) {
+		ghosts = new List<GameObject>();
+
 				int numberOfGhosts = newLevel;
 				do {
 						Vector3 offset = new Vector3 (halfCellWidth, 0, halfCellWidth);
-						makeGhost (offset, Vector3.zero);
+						ghosts.Add(makeGhost (offset, Vector3.zero));
+
 						numberOfGhosts--;
 				} while (numberOfGhosts>0);
 		}
@@ -108,7 +116,7 @@ public class MazeManager : MonoBehaviour {
 		newDot.transform.parent = transform;
 		return newDot;
 	}
-		void makeGhost(Vector3 offset,Vector3 rotate) {
+		GameObject makeGhost(Vector3 offset,Vector3 rotate) {
 		Vector2 pos;
 			Vector2 player = new Vector2 (0, 0);
 		do {
@@ -118,6 +126,7 @@ public class MazeManager : MonoBehaviour {
 			Vector3 position = new Vector3 (cellWidth * (pos.x-(width/2.0f)), 0, cellHeight * (pos.y-(height/2.0f))) + transform.position;
 			GameObject newGhost = (GameObject)Instantiate (ghostPrefab, position+offset, Quaternion.Euler (rotate));
 			newGhost.transform.parent = transform;
+			return newGhost;
 		}
 
 	
