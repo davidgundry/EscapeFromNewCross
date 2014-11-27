@@ -105,13 +105,13 @@ GUIText:
   m_PixelOffset: {x: 0, y: 0}
   m_LineSpacing: 1
   m_TabSize: 4
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Font: {fileID: 12800000, guid: a00c00d9884114e0387d5c4660c55c03, type: 3}
   m_Material: {fileID: 0}
   m_FontSize: 0
   m_FontStyle: 0
   m_Color:
     serializedVersion: 2
-    rgba: 4278190335
+    rgba: 4294967295
   m_PixelCorrect: 1
   m_RichText: 1
 --- !u!4 &413599108
@@ -121,7 +121,7 @@ Transform:
   m_PrefabInternal: {fileID: 1527032957}
   m_GameObject: {fileID: 413599106}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .0500000007, y: .899999976, z: 0}
+  m_LocalPosition: {x: .0500000007, y: .939999998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1576368428}
@@ -149,7 +149,7 @@ Transform:
   m_PrefabInternal: {fileID: 1527032957}
   m_GameObject: {fileID: 488937671}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .5, y: .600000024, z: 0}
+  m_LocalPosition: {x: .5, y: .75, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 1}
   m_Children: []
   m_Father: {fileID: 1811232007}
@@ -162,14 +162,14 @@ GUITexture:
   m_PrefabInternal: {fileID: 1527032957}
   m_GameObject: {fileID: 488937671}
   m_Enabled: 1
-  m_Texture: {fileID: 10400, guid: 0000000000000000e000000000000000, type: 0}
+  m_Texture: {fileID: 2800000, guid: b2bcd7af496e8457883265ad841fbc70, type: 3}
   m_Color: {r: .5, g: .5, b: .5, a: .5}
   m_PixelInset:
     serializedVersion: 2
-    x: -64
-    y: -29
-    width: 128
-    height: 58
+    x: -256
+    y: -196
+    width: 512
+    height: 382
   m_LeftBorder: 0
   m_RightBorder: 0
   m_TopBorder: 0
@@ -327,13 +327,13 @@ GUIText:
   m_PixelOffset: {x: 0, y: 0}
   m_LineSpacing: 1
   m_TabSize: 4
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Font: {fileID: 12800000, guid: a00c00d9884114e0387d5c4660c55c03, type: 3}
   m_Material: {fileID: 0}
   m_FontSize: 0
   m_FontStyle: 0
   m_Color:
     serializedVersion: 2
-    rgba: 4278190335
+    rgba: 4278255615
   m_PixelCorrect: 1
   m_RichText: 1
 --- !u!1 &622880479
@@ -359,7 +359,7 @@ Transform:
   m_PrefabInternal: {fileID: 1527032957}
   m_GameObject: {fileID: 622880479}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .0500000007, y: .949999988, z: 0}
+  m_LocalPosition: {x: .0500000007, y: .99000001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1576368428}
@@ -379,13 +379,13 @@ GUIText:
   m_PixelOffset: {x: 0, y: 0}
   m_LineSpacing: 1
   m_TabSize: 4
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Font: {fileID: 12800000, guid: a00c00d9884114e0387d5c4660c55c03, type: 3}
   m_Material: {fileID: 0}
   m_FontSize: 0
   m_FontStyle: 0
   m_Color:
     serializedVersion: 2
-    rgba: 4278190335
+    rgba: 4294967295
   m_PixelCorrect: 1
   m_RichText: 1
 --- !u!1 &997443075
@@ -461,7 +461,7 @@ GUIText:
   m_PixelOffset: {x: 0, y: 0}
   m_LineSpacing: 1
   m_TabSize: 4
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Font: {fileID: 12800000, guid: a00c00d9884114e0387d5c4660c55c03, type: 3}
   m_Material: {fileID: 0}
   m_FontSize: 0
   m_FontStyle: 0
@@ -541,13 +541,13 @@ GUIText:
   m_PixelOffset: {x: 0, y: 0}
   m_LineSpacing: 1
   m_TabSize: 4
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Font: {fileID: 12800000, guid: a00c00d9884114e0387d5c4660c55c03, type: 3}
   m_Material: {fileID: 0}
   m_FontSize: 0
   m_FontStyle: 0
   m_Color:
     serializedVersion: 2
-    rgba: 4278190335
+    rgba: 4278255615
   m_PixelCorrect: 1
   m_RichText: 1
 --- !u!1 &1441014025
@@ -593,13 +593,13 @@ GUIText:
   m_PixelOffset: {x: 0, y: 0}
   m_LineSpacing: 1
   m_TabSize: 4
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Font: {fileID: 12800000, guid: a00c00d9884114e0387d5c4660c55c03, type: 3}
   m_Material: {fileID: 0}
   m_FontSize: 0
   m_FontStyle: 0
   m_Color:
     serializedVersion: 2
-    rgba: 4278190335
+    rgba: 4278255615
   m_PixelCorrect: 1
   m_RichText: 1
 --- !u!1001 &1527032957
@@ -700,6 +700,97 @@ Prefab:
     - target: {fileID: 100016, guid: 34cfd00ef2aad3049bcac312d290379d, type: 2}
       propertyPath: m_Layer
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 13200004, guid: 34cfd00ef2aad3049bcac312d290379d, type: 2}
+      propertyPath: m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: a00c00d9884114e0387d5c4660c55c03,
+        type: 3}
+    - target: {fileID: 13200004, guid: 34cfd00ef2aad3049bcac312d290379d, type: 2}
+      propertyPath: m_Color.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 13200000, guid: 34cfd00ef2aad3049bcac312d290379d, type: 2}
+      propertyPath: m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: a00c00d9884114e0387d5c4660c55c03,
+        type: 3}
+    - target: {fileID: 13200000, guid: 34cfd00ef2aad3049bcac312d290379d, type: 2}
+      propertyPath: m_Color.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 13100000, guid: 34cfd00ef2aad3049bcac312d290379d, type: 2}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: b2bcd7af496e8457883265ad841fbc70, type: 3}
+    - target: {fileID: 13100000, guid: 34cfd00ef2aad3049bcac312d290379d, type: 2}
+      propertyPath: m_PixelInset.width
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 13100000, guid: 34cfd00ef2aad3049bcac312d290379d, type: 2}
+      propertyPath: m_PixelInset.height
+      value: 382
+      objectReference: {fileID: 0}
+    - target: {fileID: 13100000, guid: 34cfd00ef2aad3049bcac312d290379d, type: 2}
+      propertyPath: m_PixelInset.x
+      value: -256
+      objectReference: {fileID: 0}
+    - target: {fileID: 13100000, guid: 34cfd00ef2aad3049bcac312d290379d, type: 2}
+      propertyPath: m_PixelInset.y
+      value: -196
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 34cfd00ef2aad3049bcac312d290379d, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: .75
+      objectReference: {fileID: 0}
+    - target: {fileID: 13200004, guid: 34cfd00ef2aad3049bcac312d290379d, type: 2}
+      propertyPath: m_FontSize
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 13200008, guid: 34cfd00ef2aad3049bcac312d290379d, type: 2}
+      propertyPath: m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: a00c00d9884114e0387d5c4660c55c03,
+        type: 3}
+    - target: {fileID: 13200008, guid: 34cfd00ef2aad3049bcac312d290379d, type: 2}
+      propertyPath: m_Color.rgba
+      value: 4278255615
+      objectReference: {fileID: 0}
+    - target: {fileID: 13200010, guid: 34cfd00ef2aad3049bcac312d290379d, type: 2}
+      propertyPath: m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: a00c00d9884114e0387d5c4660c55c03,
+        type: 3}
+    - target: {fileID: 13200010, guid: 34cfd00ef2aad3049bcac312d290379d, type: 2}
+      propertyPath: m_Color.rgba
+      value: 4278255615
+      objectReference: {fileID: 0}
+    - target: {fileID: 400010, guid: 34cfd00ef2aad3049bcac312d290379d, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: .99000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 34cfd00ef2aad3049bcac312d290379d, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: .939999998
+      objectReference: {fileID: 0}
+    - target: {fileID: 13200012, guid: 34cfd00ef2aad3049bcac312d290379d, type: 2}
+      propertyPath: m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: a00c00d9884114e0387d5c4660c55c03,
+        type: 3}
+    - target: {fileID: 13200006, guid: 34cfd00ef2aad3049bcac312d290379d, type: 2}
+      propertyPath: m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: a00c00d9884114e0387d5c4660c55c03,
+        type: 3}
+    - target: {fileID: 13200002, guid: 34cfd00ef2aad3049bcac312d290379d, type: 2}
+      propertyPath: m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: a00c00d9884114e0387d5c4660c55c03,
+        type: 3}
+    - target: {fileID: 13200002, guid: 34cfd00ef2aad3049bcac312d290379d, type: 2}
+      propertyPath: m_Color.rgba
+      value: 4278255615
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 34cfd00ef2aad3049bcac312d290379d, type: 2}
@@ -806,7 +897,7 @@ GUIText:
   m_PixelOffset: {x: 0, y: 0}
   m_LineSpacing: 1
   m_TabSize: 4
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Font: {fileID: 12800000, guid: a00c00d9884114e0387d5c4660c55c03, type: 3}
   m_Material: {fileID: 0}
   m_FontSize: 0
   m_FontStyle: 0

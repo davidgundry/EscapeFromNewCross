@@ -19,7 +19,7 @@ public class MiniMap : MonoBehaviour
 		void Start ()
 		{
 				mazeManager = mainMap.GetComponent<MazeManager> ();
-				visible = false;
+		setVisible (false);
 				halfCellWidth = cellWidth / 2.0f;
 				halfCellHeight = cellHeight / 2.0f;
 		}
@@ -27,6 +27,11 @@ public class MiniMap : MonoBehaviour
 		public void setVisible (bool isVisible)
 		{
 				visible = isVisible;
+				// make all children invisible or visible
+				foreach (Transform aaa in transform)
+				if (aaa.gameObject.renderer)
+					aaa.gameObject.renderer.enabled = visible; 
+
 				if (visible) {
 						makeGhostIcons ();
 				}
