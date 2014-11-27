@@ -91,13 +91,14 @@ public class GameController : MonoBehaviour {
 	void nextLevel()
 	{
 	    level++;
-	    loadLevel();
 		updateLevel();
+	    
+
 		startLevel ();
 	    //startStartGUI();
 	}
 	
-	void restartLevel()
+	/*void restartLevel()
 	{
 	    loadLevel();
 	    startStartGUI();  
@@ -113,9 +114,8 @@ public class GameController : MonoBehaviour {
 	    startGUI.SetActive(true);
 	    failGUI.SetActive(false);
 	    completeGUI.SetActive(false);
-	    /*GameObject[] pills = GameObject.FindGameObjectsWithTag("Pill");
-	    pillsInWorld = pills.Length;*/
-	}
+
+	}*/
 	
 	void loadLevel()
 	{
@@ -143,10 +143,12 @@ public class GameController : MonoBehaviour {
 	
 	void startLevel()
 	{
-		prepareLevel ();
 		Time.timeScale = 1;
+		prepareLevel ();
+
 	    started = true;
 		state = GameStates.playing;
+		completeGUI.SetActive (false);
 	    startGUI.SetActive(false);
 	    gameGUI.SetActive(true);
 	}
@@ -174,6 +176,7 @@ public class GameController : MonoBehaviour {
 		pillsInWorld = 999;
 	    completeGUI.SetActive(true);
 	    Time.timeScale = 0;
+		loadLevel();
 	}
 	public void playerDied() {
 		gameGUI.SetActive (false);
@@ -244,7 +247,7 @@ public class GameController : MonoBehaviour {
 	      pause();*/
 	  }
 	  
-	  if (pillsInWorld <=13)//0)
+	  if (pillsInWorld <=0))
 	    levelCompleted();
 	}
 	

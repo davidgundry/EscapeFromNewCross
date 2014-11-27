@@ -57,7 +57,7 @@ public class MiniMap : MonoBehaviour
 						playerIcon.transform.localPosition = player.transform.position;
 						Vector2 cellPos = new Vector2 (Mathf.Round (playerPos.x + (mazeManager.width / 2.0f) - 0.5f), Mathf.Round (playerPos.z + (mazeManager.height / 2.0f) - 0.5f));
 
-						Debug.Log ("The player is at " + player.transform.position.ToString () + "x=" + (playerPos.x + (mazeManager.width / 2.0f) - 0.5f) + " cell=" + cellPos);
+						//Debug.Log ("The player is at " + player.transform.position.ToString () + "x=" + (playerPos.x + (mazeManager.width / 2.0f) - 0.5f) + " cell=" + cellPos);
 						if (!mazeManager.currentMaze.hasVisited ((int)cellPos.x, (int)cellPos.y)) {
 								//Debug.Log ("Draw cell at " + cellPos.ToString ());
 								drawCell ((int)cellPos.x, (int)cellPos.y);
@@ -122,7 +122,7 @@ public class MiniMap : MonoBehaviour
 		{
 				Vector3 position = new Vector3 (cellWidth * (0.5f + x - (mazeManager.width / 2.0f)), -1.5f, cellHeight * (0.5f + y - (mazeManager.height / 2.0f))) + transform.position;
 				GameObject newWall = (GameObject)Instantiate (wallPrefab, position + offset, Quaternion.Euler (rotate));
-				Debug.Log ("Make wall at " + (position + offset).ToString ());
+				
 				newWall.transform.parent = transform;
 		}
 }
