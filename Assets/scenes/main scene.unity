@@ -2155,20 +2155,21 @@ GameObject:
   - 124: {fileID: 613842330}
   - 92: {fileID: 613842329}
   - 81: {fileID: 613842328}
+  - 114: {fileID: 613842333}
   m_Layer: 0
   m_Name: Minimap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &613842328
 AudioListener:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 613842327}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!92 &613842329
 Behaviour:
   m_ObjectHideFlags: 0
@@ -2207,7 +2208,7 @@ Camera:
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294966989
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -2227,6 +2228,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
+--- !u!114 &613842333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 613842327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c28b023ee0594e968bab397e85c273f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1787274094}
+  mainMap: {fileID: 989643842}
 --- !u!1 &616025639
 GameObject:
   m_ObjectHideFlags: 0

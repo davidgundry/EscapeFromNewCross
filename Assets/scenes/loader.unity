@@ -83,7 +83,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 413599108}
   - 132: {fileID: 413599107}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: LevelText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 488937672}
   - 131: {fileID: 488937673}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: StartSplash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -245,7 +245,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 527285529}
   - 131: {fileID: 527285530}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PauseSplash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -293,7 +293,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 555585007}
   - 132: {fileID: 555585008}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: EndText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -345,7 +345,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 622880480}
   - 132: {fileID: 622880481}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ScoreText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -396,7 +396,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 997443076}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PauseGUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -427,7 +427,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1272885995}
   - 132: {fileID: 1272885996}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PauseText2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -478,7 +478,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1343954392}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CompleteGUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -507,7 +507,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1407869353}
   - 132: {fileID: 1407869354}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: StartText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -559,7 +559,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1441014026}
   - 132: {fileID: 1441014027}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: EndText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -645,6 +645,62 @@ Prefab:
       propertyPath: levelToLoad
       value: main scene
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 34cfd00ef2aad3049bcac312d290379d, type: 2}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100018, guid: 34cfd00ef2aad3049bcac312d290379d, type: 2}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100028, guid: 34cfd00ef2aad3049bcac312d290379d, type: 2}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 34cfd00ef2aad3049bcac312d290379d, type: 2}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100010, guid: 34cfd00ef2aad3049bcac312d290379d, type: 2}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100022, guid: 34cfd00ef2aad3049bcac312d290379d, type: 2}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100020, guid: 34cfd00ef2aad3049bcac312d290379d, type: 2}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100024, guid: 34cfd00ef2aad3049bcac312d290379d, type: 2}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 34cfd00ef2aad3049bcac312d290379d, type: 2}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100012, guid: 34cfd00ef2aad3049bcac312d290379d, type: 2}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100014, guid: 34cfd00ef2aad3049bcac312d290379d, type: 2}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100026, guid: 34cfd00ef2aad3049bcac312d290379d, type: 2}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: 34cfd00ef2aad3049bcac312d290379d, type: 2}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100016, guid: 34cfd00ef2aad3049bcac312d290379d, type: 2}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 34cfd00ef2aad3049bcac312d290379d, type: 2}
   m_RootGameObject: {fileID: 490954218}
@@ -658,7 +714,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1576368428}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: GameGUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -687,7 +743,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1660159428}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: FailGUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -716,7 +772,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1669519774}
   - 132: {fileID: 1669519775}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PauseText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -767,7 +823,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1811232007}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: StartGUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}

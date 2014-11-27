@@ -102,10 +102,13 @@ public class GameController : MonoBehaviour {
 		Debug.Log ("prepare level");		
 		maze = (MazeManager)GameObject.Find ("MazeDrawer").GetComponent (typeof(MazeManager));
 		pillsInWorld = maze.createNewMaze (level);
+		setMiniMapActive (true);
 		targetScore = pillsInWorld;
 	}
-
-
+	void setMiniMapActive(bool isActive) {
+		MiniMap miniMap = (MiniMap)GameObject.Find ("Minimap").GetComponent (typeof(MiniMap));
+		miniMap.setVisible(isActive);
+	}
 
 	
 	void startLevel()
