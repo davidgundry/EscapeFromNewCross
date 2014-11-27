@@ -1,6 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public enum GameStates
+{
+	intro,
+	playing,
+	died,
+	gameover,
+	levelComplete,
+	paused
+}
+
 public class GameController : MonoBehaviour {
 
 	public GameObject startGUI;
@@ -8,19 +18,23 @@ public class GameController : MonoBehaviour {
 	public GameObject gameGUI;
 	public GameObject completeGUI;
 	public GameObject failGUI;
+	public GameObject dieGUI;
 
 	public MazeManager maze;
 	
 	public GUIText scoreText;
 	public GUIText levelText;
-	
+	public GUIText livesText;
+	public GUIText arghText;
+
+	public GameStates state;
 	public bool started = false;
-	public bool gameOver = false;
+	//public bool gameOver = false;
 	public bool paused = false;
 	public bool levelComplete = false;
-	private bool doPrepare;
+
 	
-	public int score = 0;
+	public int lives;
 	public int pillsInWorld;
 	public int level;
 	public int targetScore;
@@ -36,8 +50,11 @@ public class GameController : MonoBehaviour {
 	  DontDestroyOnLoad(gameGUI);
 	  DontDestroyOnLoad(completeGUI);
 	  DontDestroyOnLoad(failGUI);
+	DontDestroyOnLoad(dieGUI);
 	  DontDestroyOnLoad(scoreText);
 	  DontDestroyOnLoad(levelText);
+	  DontDestroyOnLoad(livesText);
+		DontDestroyOnLoad (arghText);
 	  Application.LoadLevel(levelToLoad);
 	}
 
@@ -47,6 +64,7 @@ public class GameController : MonoBehaviour {
 	    pauseGUI.SetActive(false);
 	    startGUI.SetActive(true);
 	    gameGUI.SetActive(false);
+		dieGUI.SetActive(false);
 	    failGUI.SetActive(false);
 	    completeGUI.SetActive(false);
 		pillsInWorld = 999;
@@ -56,12 +74,17 @@ public class GameController : MonoBehaviour {
 	}
 	void startGame() {
 		level = 1;
+		lives = 3;
 		updateLevel();
+		updateLives ();
 		started = false;
+		state = GameStates.intro;
+		failGUI.SetActive(false);
+		startGUI.SetActive(true);
 
 
 		loadLevel ();
-		doPrepare = true;
+	
 		//prepareLevel ();
 	}
 	
@@ -69,7 +92,9 @@ public class GameController : MonoBehaviour {
 	{
 	    level++;
 	    loadLevel();
-	    startStartGUI();
+		updateLevel();
+		startLevel ();
+	    //startStartGUI();
 	}
 	
 	void restartLevel()
@@ -83,7 +108,7 @@ public class GameController : MonoBehaviour {
 	    updateLevel();
 
 	    started = false;
-	    gameOver = false;
+
 	    levelComplete = false;
 	    startGUI.SetActive(true);
 	    failGUI.SetActive(false);
@@ -98,10 +123,11 @@ public class GameController : MonoBehaviour {
 	}
 
 	void prepareLevel() {
-		doPrepare = false;
+
 		Debug.Log ("prepare level");		
 		maze = (MazeManager)GameObject.Find ("MazeDrawer").GetComponent (typeof(MazeManager));
 		pillsInWorld = maze.createNewMaze (level);
+		setPlayerPos ();
 		setMiniMapActive (true);
 		targetScore = pillsInWorld;
 	}
@@ -109,6 +135,10 @@ public class GameController : MonoBehaviour {
 		MiniMap miniMap = (MiniMap)GameObject.Find ("Minimap").GetComponent (typeof(MiniMap));
 		miniMap.setVisible(isActive);
 	}
+	void setPlayerPos() {
+		GameObject Player = GameObject.Find ("Player");
+		Player.transform.position = new Vector3 (-0.5f + (maze.width % 2) / 2.0f, 0, -0.5f + (maze.height % 2) / 2.0f);
+		}
 
 	
 	void startLevel()
@@ -116,6 +146,7 @@ public class GameController : MonoBehaviour {
 		prepareLevel ();
 		Time.timeScale = 1;
 	    started = true;
+		state = GameStates.playing;
 	    startGUI.SetActive(false);
 	    gameGUI.SetActive(true);
 	}
@@ -139,17 +170,46 @@ public class GameController : MonoBehaviour {
 	void levelCompleted()
 	{	
 	    levelComplete = true;
+		state = GameStates.levelComplete;
 		pillsInWorld = 999;
 	    completeGUI.SetActive(true);
 	    Time.timeScale = 0;
 	}
-	
-	public void levelFailed()
+	public void playerDied() {
+		gameGUI.SetActive (false);
+		lives--;
+		updateLives();
+		if (lives == 0) {
+				gameOver ();
+		} else {
+			dieGUI.SetActive (true);
+			Time.timeScale = 0;
+			state = GameStates.died;
+		}
+	}
+	public void resumeLevel() {
+				// reset player position
+				setPlayerPos ();
+				// reset ghost positions
+				maze = (MazeManager)GameObject.Find ("MazeDrawer").GetComponent (typeof(MazeManager));
+				maze.setGhostPositions ();
+				dieGUI.SetActive (false);
+				gameGUI.SetActive (true);
+
+				state = GameStates.playing;
+				Time.timeScale = 1;
+		}
+
+
+	public void gameOver()
 	{
-	    gameOver = true;
+		state = GameStates.gameover;
+	    //gameOver = true;
 	    failGUI.SetActive(true);
-	    gameGUI.SetActive(false);
-	    Time.timeScale = 0;
+		Time.timeScale = 0;
+		state = GameStates.gameover;
+	    
+	    
 	}
 	
 	// Update is called once per frame
@@ -158,7 +218,21 @@ public class GameController : MonoBehaviour {
 
 	  if (Input.GetKeyDown (KeyCode.Space))
 	  {
-	    if (levelComplete)
+			switch(state) {
+			case GameStates.intro:
+				startLevel ();
+				break;
+			case GameStates.died:
+				resumeLevel();
+				break;
+			case GameStates.gameover:
+				startGame ();
+				break;
+			case GameStates.levelComplete:
+				nextLevel ();
+				break;
+			}
+	   /* if (levelComplete)
 	      nextLevel();
 	    else if (gameOver)
 	      restartLevel();
@@ -167,10 +241,10 @@ public class GameController : MonoBehaviour {
 	    else if (paused)
 	      unpause();
 	    else
-	      pause();
+	      pause();*/
 	  }
 	  
-	  if (pillsInWorld <=0)
+	  if (pillsInWorld <=13)//0)
 	    levelCompleted();
 	}
 	
@@ -178,6 +252,10 @@ public class GameController : MonoBehaviour {
 	{
 	  scoreText.text = "Dots left: " + pillsInWorld.ToString();
 	}
+	public void updateLives() {
+				livesText.text = "Lives: " + lives.ToString ();
+		}
+
 	
 	public void updateLevel()
 	{

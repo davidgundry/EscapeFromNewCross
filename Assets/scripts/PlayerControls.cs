@@ -70,8 +70,6 @@ public class PlayerControls : MonoBehaviour {
 	  transform.localEulerAngles = rot;
 		if (eatenDot) {
 			eatenDot=false;
-			Debug.Log ("increase score");
-			gameController.GetComponent<GameController> ().score++;
 			gameController.GetComponent<GameController> ().pillsInWorld--;
 			gameController.GetComponent<GameController> ().updateScore ();
 						
@@ -85,7 +83,7 @@ public class PlayerControls : MonoBehaviour {
 		if (other.gameObject.tag == "Monster")
 		{
 			Debug.Log ("Hit a ghost");
-			gameController.GetComponent<GameController>().levelFailed();
+			gameController.GetComponent<GameController>().playerDied();
 		}
 	  if (other.gameObject.tag == "Pill")
 	  {
