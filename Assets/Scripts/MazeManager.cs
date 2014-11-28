@@ -213,6 +213,11 @@ public class MazeManager : MonoBehaviour
 						ghosts[i].GetComponent<GhostBillboard>().clearStack();
 						}
 		}
+	public void enableGhostSounds(bool areEnabled) {
+				for (int i=0; i<ghosts.Count; i++) {
+						ghosts [i].GetComponent<GhostBillboard> ().enableSound (areEnabled);
+				}
+		}
 
 
 	

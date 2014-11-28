@@ -264,6 +264,13 @@ public class GhostBillboard : MonoBehaviour {
 	  //Debug.Log("x:"+cellX()+" y:"+cellY()+" dir:"+(int)direction+" X:"+transform.position.x+" Z:"+transform.position.z+"n:"+isWallNorth()+" e:"+isWallEast()+" s:"+isWallSouth()+" w:"+isWallWest());
 
 	}
+	public void enableSound(bool isEnabled) {
+		if (isEnabled) {
+						audio.Play ();
+				} else {
+						audio.Stop ();
+				}
+	}
 	
 	void FixedUpdate()
 	{

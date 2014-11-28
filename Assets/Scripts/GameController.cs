@@ -161,6 +161,8 @@ public class GameController : MonoBehaviour
 
 		public void playerDied ()
 		{
+			MazeManager mazeManager = (MazeManager)GameObject.Find ("MazeDrawer").GetComponent (typeof(MazeManager));
+		mazeManager.enableGhostSounds (false);
 				gameGUI.SetActive (false);
 				lives--;
 				updateLives ();
@@ -180,6 +182,7 @@ public class GameController : MonoBehaviour
 				// reset ghost positions
 				maze = (MazeManager)GameObject.Find ("MazeDrawer").GetComponent (typeof(MazeManager));
 				maze.setGhostPositions ();
+				maze.enableGhostSounds (true);
 				dieGUI.SetActive (false);
 				gameGUI.SetActive (true);
 
