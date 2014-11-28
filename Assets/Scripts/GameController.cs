@@ -36,6 +36,7 @@ public class GameController : MonoBehaviour
 		public int pillsInWorld;
 		public int level;
 		public AudioClip dieSound;
+		public AudioClip successSound;
 		//public int targetScore;
 	
 		public string levelToLoad;
@@ -53,6 +54,7 @@ public class GameController : MonoBehaviour
 				DontDestroyOnLoad (levelText);
 				DontDestroyOnLoad (livesText);
 				DontDestroyOnLoad (arghText);
+		DontDestroyOnLoad (successSound);
 				Application.LoadLevel (levelToLoad);
 		}
 
@@ -152,13 +154,27 @@ public class GameController : MonoBehaviour
 	
 		void levelCompleted ()
 		{	
+		//loadLevel ();
+
+			if (state != GameStates.levelComplete) {
+			Debug.Log ("play success sound");
+						GameObject player = GameObject.Find ("Player");
+						AudioSource.PlayClipAtPoint (successSound, player.transform.position);
+				}
 				state = GameStates.levelComplete;
 				pillsInWorld = 999;
 				completeText.text = "Level " + level.ToString ()+" Complete";
 				completeGUI.SetActive (true);
-				Time.timeScale = 0;
-				loadLevel ();
+				
+		Invoke ("doLoadLevel", 1);
+
+				
 		}
+		void doLoadLevel() {
+		loadLevel ();
+
+		Time.timeScale = 0;
+	}
 
 		public void playerDied ()
 		{

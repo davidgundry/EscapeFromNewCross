@@ -12,6 +12,7 @@ public class PlayerControls : MonoBehaviour {
 	private float rotation;
 	private float posX;
 	public float turnSpeed;
+	public AudioClip dotSound;
 	
 	public KeyCode run;
 
@@ -62,6 +63,7 @@ public class PlayerControls : MonoBehaviour {
 	  transform.localEulerAngles = rot;
 		if (eatenDot) {
 			eatenDot=false;
+			AudioSource.PlayClipAtPoint(dotSound, transform.position);
 			gameController.GetComponent<GameController> ().pillsInWorld--;
 			gameController.GetComponent<GameController> ().updateScore ();
 						

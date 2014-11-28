@@ -1645,7 +1645,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100126}
-  m_LocalRotation: {x: -.000616519421, y: .022078624, z: -.0160702411, w: .999626875}
+  m_LocalRotation: {x: -.000616519479, y: .0220786259, z: -.016070243, w: .999626935}
   m_LocalPosition: {x: -.254049301, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1891,7 +1891,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100032}
-  m_LocalRotation: {x: -.000616519421, y: .022078624, z: -.0160702411, w: .999626875}
+  m_LocalRotation: {x: -.000616519479, y: .0220786259, z: -.016070243, w: .999626935}
   m_LocalPosition: {x: .253428251, y: .00601135287, z: -.0167045239}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2553,6 +2553,7 @@ MonoBehaviour:
   jumpSpeed: 5
   gravity: .800000012
   turnSpeed: 5
+  dotSound: {fileID: 8300000, guid: 191b26b13ad0b451d9a5103f1e2f28cf, type: 3}
   run: 304
 --- !u!114 &11400002
 MonoBehaviour:
