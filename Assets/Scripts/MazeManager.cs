@@ -67,7 +67,9 @@ public class MazeManager : MonoBehaviour
 
 		int getMazeSize (int level)
 		{
-				return Mathf.Clamp (level + 3, 4, 10);
+		int size = Mathf.Clamp (level + 3, 4, 10);
+		if (level==1) {size=3;}
+		return size;
 		}
 
 		void createDots ()
@@ -83,12 +85,17 @@ public class MazeManager : MonoBehaviour
 
 		void createGhosts (int newLevel)
 		{
-				ghosts = new List<GameObject> ();
-
-				for (int i=0;i<newLevel;i++)
-				{
-				  ghosts.Add(makeGhost(i));
-				}
+		int noOfGhosts;
+		ghosts = new List<GameObject> ();
+		if (newLevel == 1) {
+				noOfGhosts = 0;
+		} else {
+				noOfGhosts = newLevel - 1;
+		}
+		for (int i=0;i<noOfGhosts;i++)
+		{
+			ghosts.Add(makeGhost(i));
+		}
 				
 				
 				/*int numberOfGhosts = newLevel;
