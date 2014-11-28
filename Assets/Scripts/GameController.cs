@@ -35,6 +35,7 @@ public class GameController : MonoBehaviour
 		public int lives;
 		public int pillsInWorld;
 		public int level;
+		public AudioClip dieSound;
 		//public int targetScore;
 	
 		public string levelToLoad;
@@ -72,7 +73,7 @@ public class GameController : MonoBehaviour
 
 		void startGame ()
 		{
-		level = 2;//1;
+		level = 1;
 				lives = 3;
 				updateLevel ();
 				updateLives ();
@@ -161,7 +162,9 @@ public class GameController : MonoBehaviour
 
 		public void playerDied ()
 		{
-			MazeManager mazeManager = (MazeManager)GameObject.Find ("MazeDrawer").GetComponent (typeof(MazeManager));
+		GameObject player = GameObject.Find ("Player");
+		AudioSource.PlayClipAtPoint(dieSound, player.transform.position);
+		MazeManager mazeManager = (MazeManager)GameObject.Find ("MazeDrawer").GetComponent (typeof(MazeManager));
 		mazeManager.enableGhostSounds (false);
 				gameGUI.SetActive (false);
 				lives--;

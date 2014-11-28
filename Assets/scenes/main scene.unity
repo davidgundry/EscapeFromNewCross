@@ -4587,7 +4587,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1247018601}
-  - 114: {fileID: 2138359252}
   m_Layer: 0
   m_Name: LookY
   m_TagString: Untagged
@@ -4601,7 +4600,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400170, guid: 32332a399987f55449a1ed64df1913a1, type: 2}
   m_PrefabInternal: {fileID: 142935569}
   m_GameObject: {fileID: 1247018600}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: .104528464, y: 0, z: 0, w: .994521916}
   m_LocalPosition: {x: 0, y: 1.5, z: 0}
   m_LocalScale: {x: .120000005, y: .120000005, z: .120000005}
   m_Children:
@@ -6033,6 +6032,7 @@ GameObject:
   - 95: {fileID: 1787274096}
   - 114: {fileID: 1108534166}
   - 143: {fileID: 1108534161}
+  - 82: {fileID: 1787274097}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -6071,6 +6071,64 @@ Animator:
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!82 &1787274097
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1787274094}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &1789626248
 GameObject:
   m_ObjectHideFlags: 0
@@ -7333,22 +7391,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 637635378}
   m_RootOrder: 0
---- !u!114 &2138359252
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400004, guid: 32332a399987f55449a1ed64df1913a1,
-    type: 2}
-  m_PrefabInternal: {fileID: 142935569}
-  m_GameObject: {fileID: 1247018600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3bcbd6fa21e2304fb01fb24379f50f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  posY: 0
-  speed: 5
-  max: 12
-  min: 12
 --- !u!4 &2138359253
 Transform:
   m_ObjectHideFlags: 0
