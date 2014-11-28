@@ -37,53 +37,53 @@ public class MazeBuilder
 
 		private void divide (int[,] grid, int x, int y, int width, int height, int orientation)
 		{
-			if ((width >=2) && (height >= 2)) {
-				bool horizontal = (orientation == HORIZONTAL);
+				if ((width >= 2) && (height >= 2)) {
+						bool horizontal = (orientation == HORIZONTAL);
 				
-				// where will the wall be drawn from?
-				int wx = x + (horizontal ? 0 : Random.Range (0, width - 2));
-				int wy = y + (horizontal ? Random.Range (0, height - 2) : 0);
+						// where will the wall be drawn from?
+						int wx = x + (horizontal ? 0 : Random.Range (0, width - 2));
+						int wy = y + (horizontal ? Random.Range (0, height - 2) : 0);
 				
-				// where will the passage through the wall exist?
-				int px = wx + (horizontal ? Random.Range (0, width) : 0);
-				int py = wy + (horizontal ? 0 : Random.Range (0, height));
+						// where will the passage through the wall exist?
+						int px = wx + (horizontal ? Random.Range (0, width) : 0);
+						int py = wy + (horizontal ? 0 : Random.Range (0, height));
 				
-				// what direction will the wall be drawn?
-				int dx = horizontal ? 1 : 0;
-				int dy = horizontal ? 0 : 1;
+						// what direction will the wall be drawn?
+						int dx = horizontal ? 1 : 0;
+						int dy = horizontal ? 0 : 1;
 				
-				// how long will the wall be?
-				int length = horizontal ? width : height;
+						// how long will the wall be?
+						int length = horizontal ? width : height;
 				
-				// what direction is perpendicular to the wall?
-				Directions dir = horizontal ? Directions.E : Directions.S;
+						// what direction is perpendicular to the wall?
+						Directions dir = horizontal ? Directions.E : Directions.S;
 				
-			for (int each=0; each<length; each++) {
-					if ((wx != px) || (wy != py)) {
-						grid [wy, wx] |= (int)dir;
-					}
-					wx += dx;
-					wy += dy;
-				}
+						for (int each=0; each<length; each++) {
+								if ((wx != px) || (wy != py)) {
+										grid [wy, wx] |= (int)dir;
+								}
+								wx += dx;
+								wy += dy;
+						}
 				
-				int nx = x;
-				int ny = y;
-				int w = horizontal ? width : wx - x + 1;
-				int h = horizontal ? wy - y + 1 : height;
-				divide (grid, nx, ny, w, h, choose_orientation (w, h));
+						int nx = x;
+						int ny = y;
+						int w = horizontal ? width : wx - x + 1;
+						int h = horizontal ? wy - y + 1 : height;
+						divide (grid, nx, ny, w, h, choose_orientation (w, h));
 				
-				nx = horizontal ? x : wx + 1;
-				ny = horizontal ? wy + 1 : y;
-				w = horizontal ? width : x + width - wx - 1;
-				h = horizontal ? y + height - wy - 1 : height;
-				divide (grid, nx, ny, w, h, choose_orientation (w, h));
+						nx = horizontal ? x : wx + 1;
+						ny = horizontal ? wy + 1 : y;
+						w = horizontal ? width : x + width - wx - 1;
+						h = horizontal ? y + height - wy - 1 : height;
+						divide (grid, nx, ny, w, h, choose_orientation (w, h));
 
+				}
+		
+		
 		}
-		
-		
-	}
 			
-			public Maze Initialise (int width, int height)
+		public Maze Initialise (int width, int height)
 		{
 				var maze = new Maze ();
 				maze.create (width, height);
