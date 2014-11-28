@@ -2,6 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 
+// MazeBuilder
+// Randomly generates a different maze of a particular size
+// Uses the Recursive division algorithm
 // adapted from Ruby code at http://weblog.jamisbuck.org/2011/1/12/maze-generation-recursive-division-algorithm
 
 public class MazeBuilder

@@ -2,6 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 
+// Minimap
+// Manages the Mini map and draws walls, the player and ghosts on it as appropriate
+
 public class MiniMap : MonoBehaviour
 {
 
@@ -19,7 +22,7 @@ public class MiniMap : MonoBehaviour
 		void Start ()
 		{
 				mazeManager = mainMap.GetComponent<MazeManager> ();
-		setVisible (false);
+				setVisible (false);
 				halfCellWidth = cellWidth / 2.0f;
 				halfCellHeight = cellHeight / 2.0f;
 		}
@@ -29,8 +32,8 @@ public class MiniMap : MonoBehaviour
 				visible = isVisible;
 				// make all children invisible or visible
 				foreach (Transform aaa in transform)
-				if (aaa.gameObject.renderer)
-					aaa.gameObject.renderer.enabled = visible; 
+						if (aaa.gameObject.renderer)
+								aaa.gameObject.renderer.enabled = visible; 
 
 				if (visible) {
 						makeGhostIcons ();
@@ -57,9 +60,7 @@ public class MiniMap : MonoBehaviour
 						playerIcon.transform.localPosition = player.transform.position;
 						Vector2 cellPos = new Vector2 (Mathf.Round (playerPos.x + (mazeManager.width / 2.0f) - 0.5f), Mathf.Round (playerPos.z + (mazeManager.height / 2.0f) - 0.5f));
 
-						//Debug.Log ("The player is at " + player.transform.position.ToString () + "x=" + (playerPos.x + (mazeManager.width / 2.0f) - 0.5f) + " cell=" + cellPos);
-						if (!mazeManager.currentMaze.hasVisited ((int)cellPos.x, (int)cellPos.y)) {
-								//Debug.Log ("Draw cell at " + cellPos.ToString ());
+								if (!mazeManager.currentMaze.hasVisited ((int)cellPos.x, (int)cellPos.y)) {
 								drawCell ((int)cellPos.x, (int)cellPos.y);
 								mazeManager.currentMaze.setVisited ((int)cellPos.x, (int)cellPos.y, true);
 						}
