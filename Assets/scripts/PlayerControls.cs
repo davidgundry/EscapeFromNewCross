@@ -35,15 +35,6 @@ public class PlayerControls : MonoBehaviour {
 	
 	void FixedUpdate ()
 	{
-	  
-	//  if (cController.isGrounded)
-	 // {
-	  //    yVelocity = 0;
-	 //     if (Input.GetButtonDown("Jump"))
-	//	  yVelocity = jumpSpeed;
-	 // }
-	 // yVelocity -= gravity;
-	  
 	  float moveHorizontal = Input.GetAxis("Horizontal");
 	  float moveVertical = Input.GetAxis("Vertical");
 	  Vector3 movement = new Vector3(0.0f,0.0f,moveVertical) * speed;
@@ -61,9 +52,6 @@ public class PlayerControls : MonoBehaviour {
 	    animator.SetBool("running",false);
 	  }
 	  
-	  //transform.position = new Vector3(transform.position.x,0.31f,transform.position.z);
-	  
-	  //posX = Input.GetAxis("Mouse X");
 	  Vector3 rot = transform.localEulerAngles;
 	  rotation += moveHorizontal * turnSpeed;
 	  rot.y = rotation;
@@ -79,12 +67,12 @@ public class PlayerControls : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider other)
 	{
-
-		if (other.gameObject.tag == "Monster")
-		{
-			Debug.Log ("Hit a ghost");
-			gameController.GetComponent<GameController>().playerDied();
-		}
+	  if (other.gameObject.tag == "Monster")
+	  {
+		  Debug.Log ("Hit a ghost");
+		  gameController.GetComponent<GameController>().playerDied();
+	  }
+	  
 	  if (other.gameObject.tag == "Pill")
 	  {
 	      Debug.Log ("eat pill "+other.gameObject.GetComponent<Pill>().index);
@@ -97,10 +85,5 @@ public class PlayerControls : MonoBehaviour {
 		   		
 
 	  }
-	
-
-	
-	
-	
-}
+    }
 }

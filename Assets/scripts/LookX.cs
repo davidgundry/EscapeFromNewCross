@@ -31,18 +31,10 @@ public class LookX : MonoBehaviour {
 	}
 	
 	void FixedUpdate() {
-	/*  posX = Input.GetAxis("Mouse X");
-	  Vector3 rot = transform.localEulerAngles;
-	  rotation += posX * speed;
-	  rotation = Mathf.Clamp (rotation, min, max);
-	  rot.y = rotation;
-	  transform.localEulerAngles = rot;*/
-	  
+  
 	  cameraDirection = transform.localPosition.normalized;
 	  Vector3 desiredCameraPos = transform.parent.TransformPoint(cameraDirection * maxDistance);
 
-	  
-	  
 	  RaycastHit hit;
 	  if( Physics.Linecast(transform.parent.position, desiredCameraPos, out hit))
 	    distance = Mathf.Clamp(hit.distance, minDistance, maxDistance);
