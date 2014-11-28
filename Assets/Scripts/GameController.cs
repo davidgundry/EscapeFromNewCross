@@ -75,7 +75,7 @@ public class GameController : MonoBehaviour
 
 		void startGame ()
 		{
-		level = 1;
+				level = 0;
 				lives = 3;
 				updateLevel ();
 				updateLives ();
