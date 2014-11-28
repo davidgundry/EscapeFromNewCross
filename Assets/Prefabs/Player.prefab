@@ -1299,7 +1299,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400170}
-  - 114: {fileID: 11400004}
   m_Layer: 0
   m_Name: LookY
   m_TagString: Untagged
@@ -2417,7 +2416,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100170}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: .104528464, y: 0, z: 0, w: .994521916}
   m_LocalPosition: {x: 0, y: 1.5, z: 0}
   m_LocalScale: {x: .120000005, y: .120000005, z: .120000005}
   m_Children:
@@ -2433,7 +2432,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: .192156866, g: .301960796, b: .474509805, a: .0196078438}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: .0196078438}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -2574,21 +2573,6 @@ MonoBehaviour:
   maxDistance: 13
   distance: 0
   cameraDirection: {x: 0, y: 0, z: 0}
---- !u!114 &11400004
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100170}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3bcbd6fa21e2304fb01fb24379f50f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  posY: 0
-  speed: 5
-  max: 12
-  min: 12
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1
