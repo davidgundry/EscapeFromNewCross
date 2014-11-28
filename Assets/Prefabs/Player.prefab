@@ -2553,7 +2553,7 @@ MonoBehaviour:
   jumpSpeed: 5
   gravity: .800000012
   turnSpeed: 5
-  dotSound: {fileID: 8300000, guid: 191b26b13ad0b451d9a5103f1e2f28cf, type: 3}
+  dotSound: {fileID: 8300000, guid: bea376a625abb4048b384b0e17b9103e, type: 3}
   run: 304
 --- !u!114 &11400002
 MonoBehaviour:
