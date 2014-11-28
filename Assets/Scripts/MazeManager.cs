@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+// Maze Manager
+// Manages drawing the maze and
+// putting the ghosts and dots into it
 public class MazeManager : MonoBehaviour
 {
 
@@ -22,15 +24,12 @@ public class MazeManager : MonoBehaviour
 		private MazeBuilder builder;
 		private Floor mazeFloor;
 		private List<GameObject> ghosts;
-		//private int[,] cells = new int[,]{{9,3,1,5},{8,8,0,4},{8,0,6,4},{10,2,2,6}};
-		// Use this for initialization
 		void Start ()
 		{
 				mazeFloor = (Floor)GameObject.Find ("Floor").GetComponent (typeof(Floor));
 				halfCellWidth = cellWidth / 2.0f;
 				halfCellHeight = cellHeight / 2.0f;
 				builder = new MazeBuilder ();
-				//createNewMaze (1);
 
 		}
 
@@ -98,13 +97,7 @@ public class MazeManager : MonoBehaviour
 		}
 				
 				
-				/*int numberOfGhosts = newLevel;
-				do {
-						
-						ghosts.Add (makeGhost ());
 
-						numberOfGhosts--;
-				} while (numberOfGhosts>0);*/
 				setGhostPositions ();
 		}
 
@@ -168,10 +161,7 @@ public class MazeManager : MonoBehaviour
 
 		GameObject makeGhost (int i)
 		{
-				//Vector2 pos = Vector2.zero;
-				// all ghosts start on the edges of the maze
-
-				//	Vector3 position = new Vector3 (cellWidth * (pos.x-(width/2.0f)), 0, cellHeight * (pos.y-(height/2.0f))) + transform.position;
+	
 				GameObject prefab = blinkyPrefab;
 				if (i==0)
 				    prefab = blinkyPrefab;
@@ -224,7 +214,6 @@ public class MazeManager : MonoBehaviour
 						Vector3 offset = new Vector3 (halfCellWidth, 0, halfCellWidth);
 						ghosts [i].transform.position = position + offset;
 						ghosts[i].GetComponent<GhostBillboard>().clearStack();
-						
 						}
 		}
 
