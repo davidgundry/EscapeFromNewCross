@@ -43,6 +43,10 @@ public class PlayerControls : MonoBehaviour {
 	  //cController.Move(movement * Time.deltaTime);
 	  animator.SetFloat("speed",moveVertical*speed);
 	  
+	  if (Input.GetKey ("escape")) {
+	     Application.Quit();
+	  }
+	  
 	  if (Input.GetKey(run))
 	  {
 	    animator.SetBool("running",true);
