@@ -22,11 +22,9 @@ public class MazeManager : MonoBehaviour
 		private float halfCellWidth, halfCellHeight;
 		public Maze currentMaze;
 		private MazeBuilder builder;
-		private Floor mazeFloor;
 		private List<GameObject> ghosts;
 		void Start ()
 		{
-				mazeFloor = (Floor)GameObject.Find ("Floor").GetComponent (typeof(Floor));
 				halfCellWidth = cellWidth / 2.0f;
 				halfCellHeight = cellHeight / 2.0f;
 				builder = new MazeBuilder ();
@@ -44,7 +42,6 @@ public class MazeManager : MonoBehaviour
 				currentMaze = builder.Generate (width, height);
 				// adds maze prefabs to the scene
 				drawMaze (currentMaze);
-				mazeFloor.setSize (width, height);
 				createDots ();
 				createGhosts (newLevel);
 				return width * height;
