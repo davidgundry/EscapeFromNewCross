@@ -245,7 +245,6 @@ public class GhostBillboard : MonoBehaviour {
 	    randomiseDirection();
 	  }
 	  
-	  
 	  switch (type)
 	  {
 	    case "inky":
@@ -261,10 +260,6 @@ public class GhostBillboard : MonoBehaviour {
 	      moveRandomly();
 	      break;
 	  }
-	  //moveRandomOnCollide();
-	  //moveRandomly();
-	  //followLeftWall();
-	  //followRightWall();
 	  
 	  //Debug.Log("x:"+cellX()+" y:"+cellY()+" dir:"+(int)direction+" X:"+transform.position.x+" Z:"+transform.position.z+"n:"+isWallNorth()+" e:"+isWallEast()+" s:"+isWallSouth()+" w:"+isWallWest());
 
