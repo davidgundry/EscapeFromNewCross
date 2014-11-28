@@ -8,13 +8,21 @@ public class Pill : MonoBehaviour {
 	public bool collected=false;
 	public int index;
 	
-	public GameObject light;
+	public Light light;
 
 	// Use this for initialization
 	void Start () {
 	  cam = Camera.main;
-	  light.SetActive(false);
+	  light.intensity = 0.01f;
 	  transform.localScale -= new Vector3(0.2f,0.2f,0.2f);
+	}
+	
+	public void onPickup()
+	{
+	      collected = true;
+	      transform.Translate(new Vector3(0,0.92f,0));
+	      light.intensity = 0.2f;
+	      transform.localScale = new Vector3(0.15f,0.15f,0.15f);
 	}
 	
 	// Update is called once per frame
