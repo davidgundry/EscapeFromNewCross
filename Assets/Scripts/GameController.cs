@@ -67,7 +67,7 @@ public class GameController : MonoBehaviour
 				completeGUI.SetActive (false);
 				pillsInWorld = 999;
 				Time.timeScale = 0;
-	    
+				Screen.showCursor = false;
 				startGame ();
 		}
 
