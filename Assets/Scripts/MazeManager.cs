@@ -216,7 +216,9 @@ public class MazeManager : MonoBehaviour
 						Vector3 position = new Vector3 (cellWidth * (pos.x - (width / 2.0f)), 0, cellHeight * (pos.y - (height / 2.0f))) + transform.position;
 						Vector3 offset = new Vector3 (halfCellWidth, 0, halfCellWidth);
 						ghosts [i].transform.position = position + offset;
-				}
+						ghosts[i].GetComponent<GhostBillboard>().clearStack();
+						
+						}
 		}
 
 

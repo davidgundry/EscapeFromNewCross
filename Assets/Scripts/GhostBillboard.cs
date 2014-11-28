@@ -13,11 +13,15 @@ public class GhostBillboard : MonoBehaviour {
 	private Maze maze;
 	
 	private Directions direction;
+
+	
+	void Awake () {
+	  moveStack = new Stack<Vector3>();
+	}
 	
 	// Use this for initialization
 	void Start () {
 	  cam = Camera.main;
-	  moveStack = new Stack<Vector3>();
 	}
 	
 	// Update is called once per frame
@@ -25,7 +29,7 @@ public class GhostBillboard : MonoBehaviour {
 	  transform.LookAt(transform.position + cam.transform.rotation * new Vector3(0.0f,0.0f,1.0f),cam.transform.rotation * Vector3.up);
 	}
 	
-	void pushCellToStack(int x, int y)
+	public void pushCellToStack(int x, int y)
 	{
 	  moveStack.Push(worldPositionOfCell(x,y));
 	}
@@ -33,6 +37,11 @@ public class GhostBillboard : MonoBehaviour {
 	void pushTargetToStack(Vector3 target)
 	{
 	  moveStack.Push(target);
+	}
+	
+	public void clearStack()
+	{
+	  moveStack.Clear();
 	}
 	
 	int cellX()
