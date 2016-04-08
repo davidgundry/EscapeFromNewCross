@@ -1,4 +1,4 @@
-pigi
-====
+Escape From New Cross
+=====================
 
-Assessment for the PIGI course at Goldsmiths
+A 3D pacman-like game created as part of an assessment for an IGGI module at Goldsmiths
